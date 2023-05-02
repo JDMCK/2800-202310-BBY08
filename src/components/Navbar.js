@@ -11,6 +11,7 @@ const Navbar = () => {
     <nav className="navbar">
       <h1>{data && JSON.stringify(data)}</h1>
       <h1>{isPending && JSON.stringify(isPending)}</h1>
+      <h1>NAVBAR!!!</h1>
     </nav >
   );
 }
