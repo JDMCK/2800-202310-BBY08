@@ -1,10 +1,10 @@
-import Navbar from './components/Navbar';
+import logo from './img/logo_large.png';
 
 const App = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <h1>GROUP 21 FOR THE WIN</h1>
+    <div className="container">
+      <img src={logo} alt="BarterBetter Logo" />
+      <h1>(Under Construction)</h1>
     </div>
   );
 }
