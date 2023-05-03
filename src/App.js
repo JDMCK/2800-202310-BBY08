@@ -1,11 +1,12 @@
-import Navbar from './components/Navbar';
+import { Routes, Route } from "react-router-dom";
+import { Home, Profile } from './pages';
 
 const App = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <h1>GROUP 21 FOR THE WIN</h1>
-    </div>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/profile' element={<Profile />} />
+    </Routes>
   );
 }
 
