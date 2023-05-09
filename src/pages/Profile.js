@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { Navbar, Footer } from "../components";
 
 const Profile = () => {
   return (
     <>
-      <Navbar title='Profile' backArrow={true} />
+      <Navbar title='Profile' />
       <h1>Profile</h1>
       <Link to="/">Home</Link>
+      <Footer />
     </>
   );
 }

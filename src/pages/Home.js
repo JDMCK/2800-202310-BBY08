@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import scrollIcon from '../img/scroll.png';
-import searchIcon from '../img/search.png';
+import { Navbar, Footer } from '../components';
+import { scrollIcon, searchIcon } from '../img';
 
 const Home = () => {
 
@@ -24,6 +23,7 @@ const Home = () => {
         }]} />
       <h1>HOME</h1>
       <Link to={'/profile'}>Profile</Link>
+      <Footer />
     </>
   );
 }

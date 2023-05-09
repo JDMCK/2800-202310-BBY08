@@ -1,0 +1,20 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  min-height: 5rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background-color: var(--primary);
+}
+
+footer button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+}
+
+footer img {
+  width: 2rem;
+  filter: invert();
+}
