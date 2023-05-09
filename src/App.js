@@ -4,12 +4,12 @@ import AuthProvider from "./contexts/AuthContext";
 
 const App = () => {
   return (
-    <Routes>
-      <AuthProvider>
+    <AuthProvider>
+      <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
-      </AuthProvider>
-    </Routes>
+      </Routes>
+    </AuthProvider>
   );
 }
 
