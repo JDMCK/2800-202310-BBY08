@@ -45,3 +45,12 @@
   margin: 40px auto;
   padding: 20px;
 }
+
+.sign-up {
+  text-align: center;
+}
+
+.sign-up form{
+  padding: 40px;
+  
+}
