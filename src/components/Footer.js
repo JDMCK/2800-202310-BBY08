@@ -33,7 +33,7 @@ const Footer = ({ text = true }) => {
 
   return (
     <footer>
-      <button onClick={goHome}>
+      <button className={active === '/' ? 'active left' : ''} onClick={goHome}>
         {active === '/' ?
           <>
             <img src={homeActiveIcon} alt='house_dark' />
@@ -44,7 +44,7 @@ const Footer = ({ text = true }) => {
             {text && <p>Home</p>}
           </>}
       </button>
-      <button onClick={goGroups}>
+      <button className={active === '/groups' ? 'active' : ''} onClick={goGroups}>
         {active === '/groups' ?
           <>
             <img src={groupsActiveIcon} alt='groups_active' />
@@ -56,7 +56,7 @@ const Footer = ({ text = true }) => {
             {text && <p>Groups</p>}
           </>}
       </button>
-      <button onClick={goAddItem}>
+      <button className={active === '/addItem' ? 'active' : ''} onClick={goAddItem}>
         {active === '/addItem' ?
           <>
             <img src={addItemActiveIcon} alt='add_item_active' />
@@ -67,7 +67,7 @@ const Footer = ({ text = true }) => {
             {text && <p>Add-Item</p>}
           </>}
       </button>
-      <button onClick={goTrades}>
+      <button className={active === '/trades' ? 'active' : ''} onClick={goTrades}>
         {active === '/trades' ?
           <>
             <img src={tradesActiveIcon} alt='trades_active' />
@@ -78,7 +78,7 @@ const Footer = ({ text = true }) => {
             {text && <p>Trades</p>}
           </>}
       </button>
-      <button onClick={goProfile}>
+      <button className={active === '/profile' ? 'active right' : ''} onClick={goProfile}>
         {active === '/profile' ?
           <>
             <img src={profileActiveIcon} alt='profile_active' />
@@ -89,7 +89,7 @@ const Footer = ({ text = true }) => {
             {text && <p>Profile</p>}
           </>}
       </button>
-    </footer>
+    </footer >
   );
 }
 
