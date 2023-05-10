@@ -29,7 +29,7 @@ function SignUp() {
     return (
         <>
             <Navbar title='Sign Up' backArrow={true} />
-            <div className='sign-up'>
+            <div className='user-form'>
                 <form onSubmit={event => event.preventDefault()}>
                     <input type='email' placeholder='email' 
                     onChange={(event) => {
@@ -41,7 +41,7 @@ function SignUp() {
                             setRegisterPassword(event.target.value);
                         }}>
                     </input>
-                    <input type='text' placeholder='name'
+                    <input type='text' placeholder='first name'
                         onChange={(event) => {
                             setRegisterName(event.target.value);
                         }}>
