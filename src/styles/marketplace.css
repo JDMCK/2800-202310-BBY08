@@ -1,0 +1,35 @@
+.listings .card:hover {
+  background-color: var(--primary);
+  -webkit-transform: scale(1.015);
+  transform: scale(1.015);
+  cursor: pointer;
+}
+
+.listings h2 {
+  position: relative;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 2vh;
+}
+
+.listings .card:hover .card-body {
+  background-color: var(--primary);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  cursor: pointer;
+}
+
+.card-body {
+  background-color: #b9ddff;
+}
+
+.listings .card-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3; /* number of lines to show */
+}
