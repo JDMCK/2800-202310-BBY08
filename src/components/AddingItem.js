@@ -1,45 +1,141 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AddingItem = () => {
+  // Boolean state for next button
   const [disabled, setDisabled] = useState(true);
-  const [nameFilled, setNameFilled] = useState(false);
-  const [descriptionFilled, setDescriptionFilled] = useState(false);
 
+  // States for saving values
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
 
-  const checkItemName = ((event) => {
-    if (event.target.value !== '') {
-      setNameFilled(true);
+  const navigate = useNavigate();
+
+  // Checks if the item name is not empty and sets the state accordingly
+  const checkItemName = (event) => {
+    const itemName = event.target.value;
+    if (itemName !== '') {
+      setName(itemName);
+      localStorage.setItem('name', itemName);
     } else {
-      setNameFilled(false);
+      setName('');
+      localStorage.removeItem('name');
     }
-  });
+  };
 
-  const checkItemDescription = ((event) => {
-    if (event.target.value !== '') {
-      setDescriptionFilled(true);
+  // Checks if the item description is not empty and sets the state accordingly
+  const checkItemDescription = (event) => {
+    const itemDescription = event.target.value;
+    if (itemDescription !== '') {
+      setDescription(itemDescription);
+      localStorage.setItem('description', itemDescription);
     } else {
-      setDescriptionFilled(false);
+      setDescription('');
+      localStorage.removeItem('description');
     }
-  });
+  };
 
+  // Select an image to upload, if selected set state accordingly
+  const previewImage = (event) => {
+    const imageFiles = event.target.files;
+    const imageFilesLength = imageFiles.length;
+
+    if (imageFilesLength > 0) {
+      const imageSrc = URL.createObjectURL(imageFiles[0]);
+      const imagePreviewElement = document.querySelector('#preview-selected-image');
+
+      imagePreviewElement.src = imageSrc;
+      imagePreviewElement.style.display = 'block';
+
+      document.querySelector('#remove-img').removeAttribute('hidden');
+
+      setImage(imageSrc);
+      localStorage.setItem('image', imageSrc);
+    }
+  };
+
+  // Remove the selected image, set the state accordingly
+  const removeImage = () => {
+    const removeImageBtn = document.querySelector('#remove-img');
+    const imagePreviewElement = document.querySelector('#preview-selected-image');
+    document.querySelector('#file-upload').value = '';
+    imagePreviewElement.src = '';
+    imagePreviewElement.style.display = 'none';
+
+    removeImageBtn.setAttribute('hidden', 'hidden');
+    setImage('');
+    localStorage.removeItem('image');
+  };
+
+  // Go to Preview page passing along values for name, description and image
+  const toPreview = () => {
+    // Save values to local storage so that these can be loaded when going back from preview page
+    localStorage.setItem('name', name);
+    localStorage.setItem('description', description);
+    localStorage.setItem('image', image);
+
+    navigate('/addItem/preview', { state: {itemName: name, itemDescription: description, imageSrc: image}});
+  }
+
+  // Runs once the page is loaded, preloads information from local storage if not null
   useEffect(() => {
-    if (nameFilled && descriptionFilled) {
+    var savedName = localStorage.getItem('name');
+    var savedDescription = localStorage.getItem('description');
+    var savedImage = localStorage.getItem('image');
+
+    if (savedName !== null) {
+      setName(localStorage.getItem('name'));
+      document.getElementById('item-name-input').value = savedName;
+    }
+    if (savedDescription !== null) {
+      setDescription(localStorage.getItem('description'));
+      document.getElementById('item-description-input').value = savedDescription;
+    }
+    if (savedImage !== null) {
+      document.getElementById('preview-selected-image').style.display = 'block';
+      document.querySelector('#remove-img').removeAttribute('hidden');
+      setImage(localStorage.getItem('image'));
+      document.getElementById('preview-selected-image').src = savedImage;
+    }
+    setDisabled(true);
+  }, []);
+
+  /**
+   * Runs every time fields are changed from empty to filled or vice-versa
+   * Enables the next button ONLY when all fields are filled out
+   */
+  useEffect(() => {
+    if (name !== '' && description !== '' && image !== '') {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [nameFilled, descriptionFilled]);
-  
+  }, [name, description, image]);
+
   return (
     <div className='form-input'>
       <form className='form-inside-input'>
-        <input type='text' name='itemName' placeholder='Item Name' onChange={checkItemName}/>
-        <textarea rows='3' name='itemDescription' placeholder='Item Description' onChange={checkItemDescription}/>
-        <br></br>
-        <input disabled={disabled} type='submit' value='Next' />
+        <div className='item-container'>
+          <label htmlFor='item-name-input'>Item Name</label>
+          <input type='text' id='item-name-input' className='item-input' name='itemName' placeholder='Enter item name here' onChange={checkItemName} />
+        </div>
+        <div className='item-container'>
+          <label htmlFor='item-description-input'>Item Description</label>
+          <textarea rows='3' id='item-description-input' className="item-input" name="itemDescription" placeholder="Enter item description here" onChange={checkItemDescription} />
+        </div>
+        <div className='image-preview-container'>
+          <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
+          <div className='preview'>
+            <img id='preview-selected-image' alt='Preview'></img>
+          </div>
+          <label htmlFor='file-upload'>Upload Image</label>
+          <input type='file' id='file-upload' accept='image/*' onChange={previewImage} />
+        </div>
+        <button id='next-btn' disabled={disabled} type='button' onClick={() => {toPreview()}} >Next</button>
       </form>
     </div>
   );
-}
+};
 
 export default AddingItem;
