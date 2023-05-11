@@ -40,8 +40,8 @@ const PreviewCard = (props) => {
         <h1>{props.itemName}</h1>
         <p>{props.itemDesc}</p>
         <img src={props.imgSrc} alt="Preview" />
+        <button className='add-item' type='button' onClick={uploadItem}>Add Item</button>
       </div>
-			<button type='button' onClick={uploadItem}>Add Item</button>
     </>
   );
 };
