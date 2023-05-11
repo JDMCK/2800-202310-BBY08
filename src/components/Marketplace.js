@@ -6,7 +6,6 @@ const Marketplace = () => {
   const { downloadURL } = useReadStorage("/placeholder-image-1.png");
 
   const listItems = TestData.map((item) => (
-    //Template for listItems
     <div className="col" key={item.id}>
       <div className="card shadow-sm">
         <img src={downloadURL} alt="item" />

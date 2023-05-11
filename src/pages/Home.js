@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Footer } from "../components";
+import Marketplace from "../components/Marketplace";
 import { scrollIcon, searchIcon } from "../img";
 
 const Home = () => {
