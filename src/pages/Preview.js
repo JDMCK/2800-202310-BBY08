@@ -7,7 +7,7 @@ const Preview = () => {
   return (
     <>
       <Navbar title='Preview' backArrow={true} />
-      <PreviewCard imgSrc={location.state.imageSrc} itemName={location.state.itemName} itemDesc={location.state.itemDescription}/>
+      <PreviewCard imgSrc={location.state.imageSrc} itemName={location.state.itemName} itemDesc={location.state.itemDescription} file={location.state.file}/>
     </>
   );
 }

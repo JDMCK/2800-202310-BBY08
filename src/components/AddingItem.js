@@ -9,6 +9,7 @@ const AddingItem = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [file, setFile] = useState('');
 
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ const AddingItem = () => {
   const previewImage = (event) => {
     const imageFiles = event.target.files;
     const imageFilesLength = imageFiles.length;
+    setFile(event.target.files[0]);
 
     if (imageFilesLength > 0) {
       const imageSrc = URL.createObjectURL(imageFiles[0]);
@@ -66,6 +68,7 @@ const AddingItem = () => {
     removeImageBtn.setAttribute('hidden', 'hidden');
     setImage('');
     localStorage.removeItem('image');
+    localStorage.removeItem('file');
   };
 
   // Go to Preview page passing along values for name, description and image
@@ -74,8 +77,9 @@ const AddingItem = () => {
     localStorage.setItem('name', name);
     localStorage.setItem('description', description);
     localStorage.setItem('image', image);
+    localStorage.setItem('file', file);
 
-    navigate('/addItem/preview', { state: {itemName: name, itemDescription: description, imageSrc: image}});
+    navigate('/addItem/preview', { state: {itemName: name, itemDescription: description, imageSrc: image, file: file}});
   }
 
   // Runs once the page is loaded, preloads information from local storage if not null
@@ -83,20 +87,24 @@ const AddingItem = () => {
     var savedName = localStorage.getItem('name');
     var savedDescription = localStorage.getItem('description');
     var savedImage = localStorage.getItem('image');
+    var savedFile = localStorage.getItem('file');
 
     if (savedName !== null) {
-      setName(localStorage.getItem('name'));
+      setName(savedName);
       document.getElementById('item-name-input').value = savedName;
     }
     if (savedDescription !== null) {
-      setDescription(localStorage.getItem('description'));
+      setDescription(savedDescription);
       document.getElementById('item-description-input').value = savedDescription;
     }
     if (savedImage !== null) {
       document.getElementById('preview-selected-image').style.display = 'block';
       document.querySelector('#remove-img').removeAttribute('hidden');
-      setImage(localStorage.getItem('image'));
+      setImage(savedImage);
       document.getElementById('preview-selected-image').src = savedImage;
+    }
+    if (savedFile !== null) {
+      setFile(savedFile)
     }
     setDisabled(true);
   }, []);
