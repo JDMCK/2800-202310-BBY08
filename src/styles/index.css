@@ -10,6 +10,7 @@
 * {
   font-family: 'Quicksand', sans-serif;
   margin: 0;
+
 }
 
 /* Navbar Stylings */
@@ -45,6 +46,7 @@
   margin: 40px auto;
   padding: 20px;
 }
+
 
 .user-form {
   text-align: center;
