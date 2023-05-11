@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Profile, Groups, Trades, AddItem, Preview } from './pages';
+import { Home, Profile, SignUp, LogIn, ResetPassword, Groups, Trades, AddItem, Preview  } from './pages';
 import AuthProvider from "./contexts/AuthContext";
 
 const App = () => {
@@ -12,6 +12,9 @@ const App = () => {
         <Route path='/addItem/preview' element={<Preview />} />
         <Route path='/trades' element={<Trades />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/login' element={<LogIn />} />
+        <Route path='/resetpassword' element={<ResetPassword />} />
       </Routes>
     </AuthProvider>
   );
