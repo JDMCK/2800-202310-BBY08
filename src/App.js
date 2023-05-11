@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Profile, SignUp, LogIn } from './pages';
+import { Home, Profile, SignUp, LogIn, ResetPassword } from './pages';
 import AuthProvider from "./contexts/AuthContext";
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
         <Route path='/profile' element={<Profile />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<LogIn />} />
+        <Route path='/resetpassword' element={<ResetPassword />} />
       </Routes>
     </AuthProvider>
   );

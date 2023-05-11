@@ -2,23 +2,29 @@
 import { auth, firestore } from '../config/firebase.js';
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, setDoc, doc, getFirestore } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 function SignUp() {
-
     const navigate = useNavigate();
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [registerName, setRegisterName] = useState("");
+    const [registerFirstName, setFirstName] = useState("");
+    const [registerLastName, setLastName] = useState("");
 
     const register = async () => {
         const usersCollectionRef = collection(firestore, 'users');
         try{
             const res = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-            const newUser = await addDoc(usersCollectionRef, { first_name: registerName, email: registerEmail});
-            navigate('/')
+            const uid = auth.currentUser.uid; 
+                
+            console.log(uid);
+            await setDoc(doc(firestore, 'users', uid), 
+            { 
+                first_name: registerFirstName, 
+                last_name: registerLastName, 
+                email: registerEmail});
         } catch (e) {
             console.error("error adding document ", e)
         }
@@ -43,7 +49,12 @@ function SignUp() {
                     </input>
                     <input type='text' placeholder='first name'
                         onChange={(event) => {
-                            setRegisterName(event.target.value);
+                            setFirstName(event.target.value);
+                        }}>
+                    </input>
+                    <input type='text' placeholder='last name'
+                        onChange={(event) => {
+                            setLastName(event.target.value);
                         }}>
                     </input>
                     <button onClick={register}>Sign Up</button>

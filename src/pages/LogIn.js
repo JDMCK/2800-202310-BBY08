@@ -2,7 +2,6 @@
 import { auth, firestore } from '../config/firebase.js';
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 
@@ -14,14 +13,15 @@ function LogIn() {
 
     
     const SignIn = async () => {
-        const usersCollectionRef = collection(firestore, 'users');
         try{
-            const res = await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
+            await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
             navigate('/')
         } catch (e) {
             console.error("error adding document ", e)
         }
     };
+
+
 
 
 
@@ -45,6 +45,9 @@ function LogIn() {
                     <br></br>
                     <button onClick={SignIn}>Log In</button>
                 </form>
+                <a href='/ResetPassword'>
+                    Forgot Password?
+                </a>
             </div>
         </>
 
