@@ -12,3 +12,4 @@ export { default as profileActiveIcon } from './user_active.png';
 export { default as tradesIcon } from './exchanging.png';
 export { default as tradesActiveIcon } from './exchanging_active.png';
 export { default as gear } from './gear.png';
+export { default as placeholderImage } from './placeholder_image.png';
