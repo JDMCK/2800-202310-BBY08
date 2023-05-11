@@ -1,10 +1,10 @@
-import { Footer, Navbar } from "../components";
+import { Navbar, AddingItem } from "../components";
 
 const AddItem = () => {
   return (
     <>
-      <Navbar title="Add-Item" />
-      <Footer />
+      <Navbar title="Add-Item" backArrow={true}/>
+      <AddingItem />
     </>
   );
 }
