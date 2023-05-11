@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { Navbar, Footer } from "../components";
+import { useReadStorage } from "../hooks";
 
 const Profile = () => {
+
+  const { downloadURL, isPending, error } = useReadStorage('/example_profile_picture.png');
+
   return (
     <>
-      <Navbar title='Profile' backArrow={true} />
-      <h1>Profile</h1>
-      <Link to="/">Home</Link>
+      <Navbar title='Profile' />
+      <img src={downloadURL} alt='profile' />
+      <Footer />
     </>
   );
 }

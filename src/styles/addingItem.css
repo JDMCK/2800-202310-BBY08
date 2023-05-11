@@ -1,0 +1,101 @@
+.form-input {
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 80vh;
+  max-width: 60vw;
+}
+
+.form-inside-input {
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.form-inside-input label {
+  display: block;
+  text-align: left;
+  margin-left: 23%;
+  font-weight: bold;
+}
+
+.item-container {
+  margin-bottom: 1rem;
+}
+
+.item-input {
+  width: 50%;
+  padding: 12px 20px;
+}
+
+.item-input:focus {
+  background-color: #cdebf9;
+}
+
+.image-preview-container img {
+  width: 100%;
+  display: none;
+  margin-bottom: 30px;
+}
+
+.image-preview-container input {
+  display: none;
+}
+
+.image-preview-container label {
+  width: 30%;
+  height: 45px;
+  text-align: center;
+  background: var(--secondary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview-container button {
+  margin-bottom: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #eee;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  float: right;
+}
+
+#next-btn {
+  width: 40%;
+  height: 50px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  margin-top: 2rem;
+}
+
+#next-btn:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+/* Styling for PreviewCard */
+.preview-card {
+  max-width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+  max-height:80vh;
+  margin-top: 3rem;
+  margin-bottom: 30px;
+}
+
+.preview-card img {
+  width: 100%;
+}

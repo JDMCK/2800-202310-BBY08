@@ -1,0 +1,39 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  min-height: 5rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background-color: var(--text-color);
+  border-top: solid 1px var(--light-grey);
+  --border-size: 3px;
+}
+
+footer button {
+  background-color: transparent;
+  border: none;
+  color: var(--secondary);
+}
+
+footer img {
+  width: 2rem;
+}
+
+footer .active {
+  height: 100%;
+  border-top: var(--primary) var(--border-size) solid;
+  border-left: white var(--border-size) solid;
+  border-right: white var(--border-size) solid;
+  border-bottom: white var(--border-size) solid;
+}
+
+footer .left {
+  border-left: none;
+  padding-right: var(--border-size);
+}
+
+footer .right {
+  border-right: none;
+  padding-left: var(--border-size);
+}

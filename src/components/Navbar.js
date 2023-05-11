@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import backArrowIcon from '../img/back_arrow.png';
+import { backArrowIcon } from '../img';
 
 
 const Navbar = ({ title, backArrow = false, navButtons = [] }) => {
@@ -10,7 +10,7 @@ const Navbar = ({ title, backArrow = false, navButtons = [] }) => {
     navigate(-1);
   }
 
-  if (!!backArrow + navButtons.length > 2)
+  if (backArrow + navButtons.length > 2)
     throw new Error('A maximum two buttons are allowed in Navbar (including the back arrow).');
 
   return (
