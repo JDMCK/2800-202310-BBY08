@@ -1,9 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Navbar, Footer } from "../components";
-import Marketplace from "../components/Marketplace";
+import { useNavigate } from "react-router-dom";
+import { Navbar, Footer, MarketplaceCard } from "../components";
 import { scrollIcon, searchIcon } from "../img";
+import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import { collection } from "firebase/firestore";
+import { firestore } from "../config/firebase";
 
 const Home = () => {
+
+  const itemsCollectionRef = collection(firestore, 'items');
+  const [items] = useCollectionDataOnce(itemsCollectionRef);
+
   const navigate = useNavigate();
 
   return (
@@ -25,9 +31,11 @@ const Home = () => {
           },
         ]}
       />
-      <h1>HOME</h1>
-      <Link to={"/profile"}>Profile</Link>
-      <Marketplace />
+      <div className='marketplace-feed'>
+        {items && items.map((item, i) => (
+          <MarketplaceCard key={i} item={item} />
+        ))}
+      </div>
       <Footer />
     </>
   );

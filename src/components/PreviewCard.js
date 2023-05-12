@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { collection, addDoc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { firestore, storage } from '../config/firebase';
+import { auth, firestore, storage } from '../config/firebase';
 import Confirmation from './Confirmation';
 
 const PreviewCard = (props) => {
@@ -10,21 +10,27 @@ const PreviewCard = (props) => {
 
   const navigate = useNavigate();
 
+  const userRef = doc(firestore, 'users', auth.currentUser.uid);
+
+  const [disabledButton, setDisabledButton] = useState(false);
+
   const uploadItem = async () => {
+    setDisabledButton(true);
     try {
       const itemsColRef = collection(firestore, 'items');
       const docRef = await addDoc(itemsColRef, {
         item_name: props.itemName,
-        description: props.itemDesc
+        description: props.itemDesc,
+        user_ref: userRef
       });
       const storageRef = ref(storage, `item_pictures/${docRef.id}`);
       const snapshot = await uploadBytes(storageRef, props.file);
       const downloadURL = await getDownloadURL(snapshot.ref);
 
       await updateDoc(docRef, {
-        picture_URL: downloadURL 
+        picture_URL: downloadURL
       });
-      
+
     } catch (error) {
       console.log('Error adding document: ', error);
     }
@@ -47,7 +53,7 @@ const PreviewCard = (props) => {
         <h1>{props.itemName}</h1>
         <p>{props.itemDesc}</p>
         <img src={props.imgSrc} alt="Preview" />
-        <button className='add-item' type='button' onClick={uploadItem}>Add Item</button>
+        <button disabled={disabledButton} className='add-item' type='button' onClick={uploadItem}>Add Item</button>
       </div>
       <Confirmation show={showConfirmation} onHide={() => setShowConfirmation(false)} onConfirm={goHome} />
     </>

@@ -79,7 +79,7 @@ const AddingItem = () => {
     localStorage.setItem('image', image);
     localStorage.setItem('file', file);
 
-    navigate('/addItem/preview', { state: {itemName: name, itemDescription: description, imageSrc: image, file: file}});
+    navigate('/addItem/preview', { state: { itemName: name, itemDescription: description, imageSrc: image, file: file } });
   }
 
   // Runs once the page is loaded, preloads information from local storage if not null
@@ -122,27 +122,27 @@ const AddingItem = () => {
   }, [name, description, image]);
 
   return (
-    <div className='form-input'>
-      <form className='form-inside-input'>
-        <div className='item-container'>
-          <label htmlFor='item-name-input'>Item Name</label>
-          <input type='text' id='item-name-input' className='item-input' name='itemName' placeholder='Enter item name here' onChange={checkItemName} />
+    <form className='form-input'>
+      <div className='item-container'>
+        <label htmlFor='item-name-input'>Item Name</label>
+        <input type='text' id='item-name-input' className='item-input' name='itemName' placeholder='Enter item name here' onChange={checkItemName} />
+      </div>
+      <div className='item-container'>
+        <label htmlFor='item-description-input'>Item Description</label>
+        <textarea rows='3' id='item-description-input' className="item-input" name="itemDescription" placeholder="Enter item description here" onChange={checkItemDescription} />
+      </div>
+      <div className='image-preview-container'>
+        <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
+        <div className='preview'>
+          <img id='preview-selected-image' alt='Preview'></img>
         </div>
-        <div className='item-container'>
-          <label htmlFor='item-description-input'>Item Description</label>
-          <textarea rows='3' id='item-description-input' className="item-input" name="itemDescription" placeholder="Enter item description here" onChange={checkItemDescription} />
-        </div>
-        <div className='image-preview-container'>
-          <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
-          <div className='preview'>
-            <img id='preview-selected-image' alt='Preview'></img>
-          </div>
-          <label htmlFor='file-upload'>Upload Image</label>
-          <input type='file' id='file-upload' accept='image/*' onChange={previewImage} />
-        </div>
-        <button id='next-btn' disabled={disabled} type='button' onClick={() => {toPreview()}} >Next</button>
-      </form>
-    </div>
+        <label htmlFor='file-upload'>Upload Image</label>
+        <input id='file-upload' type='file' accept='image/*' onChange={previewImage} />
+      </div>
+      <div className='next-btn-container'>
+        <button id='next-btn' disabled={disabled} type='button' onClick={() => { toPreview() }} >Next</button>
+      </div>
+    </form>
   );
 };
 
