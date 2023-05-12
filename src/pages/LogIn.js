@@ -9,6 +9,7 @@ function LogIn() {
     const navigate = useNavigate();
     const [logInEmail, setLogInEmail] = useState('');
     const [logInPassword, setLogInPassword] = useState('');
+    const [error, setError] = useState('');
 
 
     const SignIn = async () => {
@@ -16,6 +17,7 @@ function LogIn() {
             await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
             navigate('/');
         } catch (e) {
+            setError('Failed to login.');
             console.error("Failed to login.", e)
         }
     };
@@ -37,6 +39,7 @@ function LogIn() {
                         }}>
                     </input>
                     <br></br>
+                    <p className='login-error'><b>{error}</b></p>
                     <button onClick={SignIn}>Log In</button>
                 </form>
                 <Link to='/resetPassword'>

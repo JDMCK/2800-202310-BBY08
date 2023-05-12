@@ -5,31 +5,33 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { auth, firestore, storage } from '../config/firebase';
 import Confirmation from './Confirmation';
 
-const PreviewCard = (props) => {
-  const [showConfirmation, setShowConfirmation] = useState(false);
+const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
+
+  const [disabledButton, setDisabledButton] = useState(false);
 
   const navigate = useNavigate();
 
   const userRef = doc(firestore, 'users', auth.currentUser.uid);
 
-  const [disabledButton, setDisabledButton] = useState(false);
 
   const uploadItem = async () => {
     setDisabledButton(true);
     try {
       const itemsColRef = collection(firestore, 'items');
       const docRef = await addDoc(itemsColRef, {
-        item_name: props.itemName,
-        description: props.itemDesc,
+        item_name: itemName,
+        description: itemDesc,
         user_ref: userRef
       });
       const storageRef = ref(storage, `item_pictures/${docRef.id}`);
-      const snapshot = await uploadBytes(storageRef, props.file);
+      const snapshot = await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
 
       await updateDoc(docRef, {
         picture_URL: downloadURL
       });
+
+      document.getElementById('confirm-modal').showModal();
 
     } catch (error) {
       console.log('Error adding document: ', error);
@@ -39,8 +41,6 @@ const PreviewCard = (props) => {
     localStorage.removeItem('description');
     localStorage.removeItem('image');
     localStorage.removeItem('file');
-
-    setShowConfirmation(true);
   }
 
   const goHome = () => {
@@ -50,12 +50,16 @@ const PreviewCard = (props) => {
   return (
     <>
       <div className="preview-card">
-        <h1>{props.itemName}</h1>
-        <p>{props.itemDesc}</p>
-        <img src={props.imgSrc} alt="Preview" />
-        <button disabled={disabledButton} className='add-item' type='button' onClick={uploadItem}>Add Item</button>
+        <div className='marketplace-card'>
+          <img src={imgSrc} alt="Preview" />
+          <div className="card-text">
+            <h3>{itemName}</h3>
+            <p>{itemDesc}</p>
+          </div>
+        </div>
       </div>
-      <Confirmation show={showConfirmation} onHide={() => setShowConfirmation(false)} onConfirm={goHome} />
+      <button id='add-item-btn' disabled={disabledButton} className='add-item' type='button' onClick={uploadItem}>Add Item</button>
+      <Confirmation onConfirm={goHome} />
     </>
   );
 };

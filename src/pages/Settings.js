@@ -21,7 +21,7 @@ const Settings = () => {
   }
 
   const handleResetPassword = () => {
-    console.log('reset password!');
+    navigate('/resetPassword');
   }
 
   return (
@@ -30,6 +30,10 @@ const Settings = () => {
       <div className='settings-item'>
         <h3>Email:</h3>
         <p>{userDoc && userDoc.email}</p>
+      </div>
+      <div className='settings-item'>
+        <h3>Trading Distance:</h3>
+        <p>{userDoc && userDoc.preferred_range}</p>
       </div>
       <div className='settings-item' onClick={handleResetPassword}>
         <h3>Reset Password</h3>

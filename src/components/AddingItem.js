@@ -133,6 +133,8 @@ const AddingItem = () => {
       </div>
       <div className='image-preview-container'>
         <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
+        <br />
+        <br />
         <div className='preview'>
           <img id='preview-selected-image' alt='Preview'></img>
         </div>

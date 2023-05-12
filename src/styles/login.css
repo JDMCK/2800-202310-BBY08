@@ -75,3 +75,7 @@
 .link-signup {
   margin-top: 3rem;
 }
+
+.login-error {
+  color: red;
+}

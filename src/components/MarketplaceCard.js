@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 
 const MarketplaceCard = ({ item }) => {
 
-  const timestamp = '9:00am';
+  const timestamp = '';
 
   const navigate = useNavigate();
 
