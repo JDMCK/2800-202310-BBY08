@@ -7,7 +7,7 @@ const MarketplaceCard = ({ item }) => {
   const navigate = useNavigate();
 
   const handleItemClick = () => {
-    navigate('/item', { state: JSON.stringify(item) });
+    navigate('/item', { state: { item: JSON.stringify(item) } });
   }
 
   return (

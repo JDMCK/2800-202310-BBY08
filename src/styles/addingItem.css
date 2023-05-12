@@ -134,3 +134,7 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.preview-card button:disabled {
+  background-color: var(--light-grey);
+}

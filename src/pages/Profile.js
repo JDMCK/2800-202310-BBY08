@@ -1,6 +1,6 @@
 import { Navbar, Footer, InventoryItem } from "../components";
 import { useNavigate } from "react-router-dom";
-import { useCollectionDataOnce, useDocumentDataOnce } from 'react-firebase-hooks/firestore';
+import { useCollectionDataOnce, useCollectionOnce, useDocumentDataOnce } from 'react-firebase-hooks/firestore';
 import { collection, doc, query, where } from 'firebase/firestore';
 import { auth, firestore } from "../config/firebase";
 import { placeholderImage, placeholderProfilePicture } from '../img';
@@ -14,12 +14,16 @@ const Profile = () => {
   // Get user and item data from firestore
   const userDocRef = doc(firestore, `users/${auth.currentUser.uid}`);
   const [userDoc] = useDocumentDataOnce(userDocRef);
+  const [itemRefs] = useCollectionOnce(
+    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef))
+  );
   const [items] = useCollectionDataOnce(
     query(collection(firestore, 'items'), where('user_ref', '==', userDocRef))
   );
 
   // Button handlers
-  const handleItemClick = item => navigate('/item', { state: JSON.stringify(item) });
+  const handleItemClick = (item, itemRef) =>
+    navigate('/item', { state: { item: JSON.stringify(item), itemRef: itemRef } });
   const handleSettings = () => navigate('/settings', { state: JSON.stringify(userDoc) });
   const description = '⭐⭐⭐⭐⭐';
 
@@ -40,7 +44,7 @@ const Profile = () => {
       </section>
       <section className='profile-inventory'>
         {items && items.map((item, i) =>
-          <InventoryItem key={i} onClick={() => handleItemClick(item)}
+          <InventoryItem key={i} onClick={() => handleItemClick(item, itemRefs.docs[i].id)}
             thumbnail={item.picture_URL ? item.picture_URL : placeholderImage} />)}
       </section>
       <Footer />

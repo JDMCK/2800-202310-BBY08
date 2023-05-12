@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { auth, firestore, storage } from '../config/firebase';
+import { useState } from 'react';
 
 const PreviewCard = (props) => {
 
@@ -9,7 +10,10 @@ const PreviewCard = (props) => {
 
   const userRef = doc(firestore, 'users', auth.currentUser.uid);
 
+  const [disabledButton, setDisabledButton] = useState(false);
+
   const uploadItem = async () => {
+    setDisabledButton(true);
     try {
       const itemsColRef = collection(firestore, 'items');
       const docRef = await addDoc(itemsColRef, {
@@ -43,7 +47,7 @@ const PreviewCard = (props) => {
         <h1>{props.itemName}</h1>
         <p>{props.itemDesc}</p>
         <img src={props.imgSrc} alt="Preview" />
-        <button className='add-item' type='button' onClick={uploadItem}>Add Item</button>
+        <button disabled={disabledButton} className='add-item' type='button' onClick={uploadItem}>Add Item</button>
       </div>
     </>
   );
