@@ -7,3 +7,7 @@ export { default as Groups } from "./Groups";
 export { default as AddItem } from "./AddItem";
 export { default as Trades } from "./Trades";
 export { default as Preview } from "./Preview";
+export { default as Item } from './Item';
+export { default as Settings } from './Settings';
+export { default as EditProfilePicture } from './EditProfilePicture';
+export { default as PrivateWrapper } from './PrivateWrapper';

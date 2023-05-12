@@ -1,21 +1,11 @@
 .form-input {
+  margin: auto;
+  max-width: 70%;
   margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
-  max-height: 80vh;
-  max-width: 60vw;
 }
 
-.form-inside-input {
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.form-inside-input label {
-  display: block;
-  text-align: left;
-  margin-left: 23%;
+.form-input label {
+  margin: auto;
   font-weight: bold;
 }
 
@@ -24,8 +14,17 @@
 }
 
 .item-input {
-  width: 50%;
-  padding: 12px 20px;
+  width: 100%;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+}
+
+#item-name-input {
+  height: 2rem;
+}
+
+#item-description-input {
+  height: 7rem;
 }
 
 .item-input:focus {
@@ -33,7 +32,7 @@
 }
 
 .image-preview-container img {
-  width: 100%;
+  max-width: 60vw;
   display: none;
   margin-bottom: 30px;
 }
@@ -70,18 +69,22 @@
 }
 
 #next-btn {
-  width: 40%;
-  height: 50px;
+  width: 50%;
+  height: 40px;
   color: #fff;
-  background: var(--primary);
+  background-color: #45a049;
   font-size: 20px;
   border-radius: 4px;
-  margin-bottom: 40px;
+  margin: auto;
   margin-top: 2rem;
+  border: none;
+}
+
+.next-btn-container {
+  text-align: center;
 }
 
 #next-btn:disabled {
-  border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
 }
@@ -91,11 +94,25 @@
   max-width: 60vw;
   margin-left: auto;
   margin-right: auto;
-  max-height:80vh;
+  max-height: 80vh;
   margin-top: 3rem;
   margin-bottom: 30px;
 }
 
 .preview-card img {
+  max-width: 60vw;
+}
+
+.add-item {
   width: 100%;
+  height: 50px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  margin-top: 1rem;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
 }
