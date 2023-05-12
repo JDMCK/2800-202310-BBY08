@@ -1,0 +1,33 @@
+.marketplace-card {
+  background-color: white;
+  margin: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 5px white solid;
+  border-radius: 10px;
+  /* box-shadow: 0 5px 10px var(--light-grey); */
+  color: black;
+}
+
+.marketplace-card img {
+  width: 100%;
+  max-width: 30rem;
+  border: 1px var(--light-grey) solid;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-text {
+  padding-left: 0.25rem;
+}
+
+.timestamp {
+  text-align: end;
+  font-size: small;
+}
+
+.marketplace-feed {
+  background-color: var(--secondary);
+  padding-bottom: 5rem;
+  padding-top: 1rem;
+}

@@ -1,0 +1,136 @@
+.form-input {
+  margin: auto;
+  max-width: 70%;
+  margin-top: 3rem;
+}
+
+.form-input label {
+  margin: auto;
+  font-weight: bold;
+}
+
+.item-container {
+  margin-bottom: 1rem;
+}
+
+.item-input {
+  width: 100%;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+}
+
+#item-name-input {
+  height: 2rem;
+}
+
+#item-description-input {
+  height: 7rem;
+}
+
+.item-input:focus {
+  background-color: #cdebf9;
+}
+
+.image-preview-container img {
+  max-width: 60vw;
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.image-preview-container input {
+  display: none;
+}
+
+.image-preview-container label {
+  width: 20vw;
+  height: 45px;
+  text-align: center;
+  background: var(--secondary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.image-preview-container button {
+  margin-bottom: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #eee;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  float: right;
+}
+
+#next-btn {
+  width: 50%;
+  height: 40px;
+  color: #fff;
+  background-color: #45a049;
+  font-size: 20px;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 2rem;
+  border: none;
+}
+
+.next-btn-container {
+  text-align: center;
+}
+
+#next-btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+}
+
+/* Styling for PreviewCard */
+.preview-card {
+  max-width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 80vh;
+  margin-top: 3rem;
+  margin-bottom: 30px;
+}
+
+.preview-card img {
+  max-width: 60vw;
+}
+
+.add-item {
+  max-width: 60vw;
+}
+
+/* Styling for Add Item Button */
+.add-item {
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  margin-top: 1rem;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  margin-top: 1rem;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
