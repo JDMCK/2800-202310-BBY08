@@ -39,7 +39,7 @@ function SignUp() {
         <>
             <Navbar title='Barter Better' />
             <div className='user-form'>
-                <h1>Sign Up</h1>
+                <h1>Signup</h1>
                 <form onSubmit={event => event.preventDefault()}>
                     <input type='email' placeholder='email'
                         onChange={(event) => {
