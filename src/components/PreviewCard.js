@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { collection, addDoc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { firestore, storage } from '../config/firebase';
+import Confirmation from './Confirmation';
 
 const PreviewCard = (props) => {
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,6 +34,10 @@ const PreviewCard = (props) => {
     localStorage.removeItem('image');
     localStorage.removeItem('file');
 
+    setShowConfirmation(true);
+  }
+
+  const goHome = () => {
     navigate('/');
   }
 
@@ -42,6 +49,7 @@ const PreviewCard = (props) => {
         <img src={props.imgSrc} alt="Preview" />
         <button className='add-item' type='button' onClick={uploadItem}>Add Item</button>
       </div>
+      <Confirmation show={showConfirmation} onHide={() => setShowConfirmation(false)} onConfirm={goHome} />
     </>
   );
 };
