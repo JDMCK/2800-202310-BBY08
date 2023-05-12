@@ -34,6 +34,8 @@
 .image-preview-container img {
   max-width: 60vw;
   display: none;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 30px;
 }
 
@@ -42,7 +44,7 @@
 }
 
 .image-preview-container label {
-  width: 30%;
+  width: 20vw;
   height: 45px;
   text-align: center;
   background: var(--secondary);
@@ -54,6 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .image-preview-container button {
@@ -104,7 +107,22 @@
 }
 
 .add-item {
+  max-width: 60vw;
+}
+
+/* Styling for Add Item Button */
+.add-item {
   width: 100%;
+  height: 50px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  margin-top: 1rem;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
   height: 50px;
   color: #fff;
   background: var(--primary);
