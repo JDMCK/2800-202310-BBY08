@@ -13,7 +13,7 @@ footer {
 footer button {
   background-color: transparent;
   border: none;
-  color: var(--secondary);
+  color: black;
 }
 
 footer img {

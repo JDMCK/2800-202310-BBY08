@@ -1,27 +1,38 @@
 import { useNavigate } from 'react-router-dom';
-import { collection, addDoc, updateDoc } from 'firebase/firestore';
+import { useState } from 'react';
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { firestore, storage } from '../config/firebase';
+import { auth, firestore, storage } from '../config/firebase';
+import Confirmation from './Confirmation';
 
-const PreviewCard = (props) => {
+const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
+
+  const [disabledButton, setDisabledButton] = useState(false);
 
   const navigate = useNavigate();
 
+  const userRef = doc(firestore, 'users', auth.currentUser.uid);
+
+
   const uploadItem = async () => {
+    setDisabledButton(true);
     try {
       const itemsColRef = collection(firestore, 'items');
       const docRef = await addDoc(itemsColRef, {
-        item_name: props.itemName,
-        description: props.itemDesc
+        item_name: itemName,
+        description: itemDesc,
+        user_ref: userRef
       });
       const storageRef = ref(storage, `item_pictures/${docRef.id}`);
-      const snapshot = await uploadBytes(storageRef, props.file);
+      const snapshot = await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
 
       await updateDoc(docRef, {
-        picture_URL: downloadURL 
+        picture_URL: downloadURL
       });
-      
+
+      document.getElementById('confirm-modal').showModal();
+
     } catch (error) {
       console.log('Error adding document: ', error);
     }
@@ -30,18 +41,25 @@ const PreviewCard = (props) => {
     localStorage.removeItem('description');
     localStorage.removeItem('image');
     localStorage.removeItem('file');
+  }
 
+  const goHome = () => {
     navigate('/');
   }
 
   return (
     <>
       <div className="preview-card">
-        <h1>{props.itemName}</h1>
-        <p>{props.itemDesc}</p>
-        <img src={props.imgSrc} alt="Preview" />
+        <div className='marketplace-card'>
+          <img src={imgSrc} alt="Preview" />
+          <div className="card-text">
+            <h3>{itemName}</h3>
+            <p>{itemDesc}</p>
+          </div>
+        </div>
       </div>
-			<button type='button' onClick={uploadItem}>Add Item</button>
+      <button id='add-item-btn' disabled={disabledButton} className='add-item' type='button' onClick={uploadItem}>Add Item</button>
+      <Confirmation onConfirm={goHome} />
     </>
   );
 };

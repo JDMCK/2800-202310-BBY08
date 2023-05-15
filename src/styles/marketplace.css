@@ -1,35 +1,33 @@
-.listings .card:hover {
-  background-color: var(--primary);
-  -webkit-transform: scale(1.015);
-  transform: scale(1.015);
-  cursor: pointer;
+.marketplace-card {
+  background-color: white;
+  margin: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 5px white solid;
+  border-radius: 10px;
+  /* box-shadow: 0 5px 10px var(--light-grey); */
+  color: black;
 }
 
-.listings h2 {
-  position: relative;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 2vh;
+.marketplace-card img {
+  width: 100%;
+  max-width: 30rem;
+  border: 1px var(--light-grey) solid;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.listings .card:hover .card-body {
-  background-color: var(--primary);
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  cursor: pointer;
+.card-text {
+  padding-left: 0.25rem;
 }
 
-.card-body {
-  background-color: #b9ddff;
+.timestamp {
+  text-align: end;
+  font-size: small;
 }
 
-.listings .card-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3; /* number of lines to show */
-  line-clamp: 3; /* number of lines to show */
+.marketplace-feed {
+  background-color: var(--secondary);
+  padding-bottom: 5rem;
+  padding-top: 1rem;
 }

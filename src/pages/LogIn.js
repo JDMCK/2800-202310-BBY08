@@ -1,41 +1,37 @@
-
-import { auth, firestore } from '../config/firebase.js';
+import { auth } from '../config/firebase.js';
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from '../components/Navbar';
+import { Navbar } from '../components';
 
 function LogIn() {
 
     const navigate = useNavigate();
     const [logInEmail, setLogInEmail] = useState('');
     const [logInPassword, setLogInPassword] = useState('');
+    const [error, setError] = useState('');
 
-    
+
     const SignIn = async () => {
-        try{
+        try {
             await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
-            navigate('/')
+            navigate('/');
         } catch (e) {
-            console.error("error adding document ", e)
+            setError('Failed to login.');
+            console.error("Failed to login.", e)
         }
     };
 
-
-
-
-
-
     return (
         <>
-            <Navbar title='BarterBetter' backArrow={true} />
+            <Navbar title='BarterBetter' />
             <div className='user-form'>
                 <h1>Log In</h1>
                 <form onSubmit={event => event.preventDefault()}>
-                    <input type='email' placeholder='email' 
-                    onChange={(event) => {
-                        setLogInEmail(event.target.value);
-                    }}>
+                    <input type='email' placeholder='email'
+                        onChange={(event) => {
+                            setLogInEmail(event.target.value);
+                        }}>
                     </input>
                     <input type='password' placeholder='password'
                         onChange={(event) => {
@@ -43,11 +39,16 @@ function LogIn() {
                         }}>
                     </input>
                     <br></br>
+                    <p className='login-error'><b>{error}</b></p>
                     <button onClick={SignIn}>Log In</button>
                 </form>
-                <a href='/ResetPassword'>
+                <Link to='/resetPassword'>
                     Forgot Password?
-                </a>
+                </Link>
+                <div className='link-signup'>
+                    <p>Don't have an account?</p>
+                    <Link to='/signup'>Signup</Link>
+                </div>
             </div>
         </>
 
