@@ -8,3 +8,4 @@ export { default as settings } from './settings.css';
 export { default as addingItem } from './addingItem.css';
 export { default as marketplace } from './marketplace.css';
 export { default as login } from './login.css';
+export { default as loading } from './loading.css';

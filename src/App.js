@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import {
-  Home, Profile, SignUp, LogIn, ResetPassword, Groups,
+  Home, Profile, SignUp, LogIn, ResetPassword, Groups, Error404,
   Trades, AddItem, Item, Settings, Preview, PrivateWrapper
 } from "./pages";
 
@@ -21,6 +21,7 @@ const App = () => {
       <Route path="/resetPassword" element={<ResetPassword />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<LogIn />} />
+      <Route path='/*' element={<Error404 />} />
     </Routes>
   );
 };

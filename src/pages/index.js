@@ -11,3 +11,5 @@ export { default as Item } from './Item';
 export { default as Settings } from './Settings';
 export { default as EditProfilePicture } from './EditProfilePicture';
 export { default as PrivateWrapper } from './PrivateWrapper';
+export { default as Loading } from './Loading';
+export { default as Error404 } from './Error404';
