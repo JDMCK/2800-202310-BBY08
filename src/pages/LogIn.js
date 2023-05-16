@@ -17,7 +17,7 @@ function LogIn() {
             await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
             navigate('/');
         } catch (e) {
-            setError('Failed to login.');
+            setError('Incorrect email/password combination.');
             console.error("Failed to login.", e)
         }
     };

@@ -30,10 +30,16 @@ function SignUp() {
                 });
             navigate('/');
         } catch (e) {
+            if (e.code === 'auth/weak-password') {
+                setError('Password must be at least 6 characters long.');
+            } else if (e.code === 'auth/email-already-in-use') {
+                setError('Email already in use.');
+            } else {
             setError('Failed to signup.');
             console.error('Failed to signup.', e)
-        }
+        }}
     };
+
 
     return (
         <>
@@ -41,22 +47,22 @@ function SignUp() {
             <div className='user-form'>
                 <h1>Signup</h1>
                 <form onSubmit={event => event.preventDefault()}>
-                    <input type='email' placeholder='email'
+                    <input required type='email' placeholder='email'
                         onChange={(event) => {
                             setRegisterEmail(event.target.value);
                         }}>
                     </input>
-                    <input type='password' placeholder='password' min='6'
+                    <input required type='password' placeholder='password' min='6'
                         onChange={(event) => {
                             setRegisterPassword(event.target.value);
                         }}>
                     </input>
-                    <input type='text' placeholder='first name'
+                    <input required type='text' placeholder='first name'
                         onChange={(event) => {
                             setFirstName(event.target.value);
                         }}>
                     </input>
-                    <input type='text' placeholder='last name'
+                    <input required type='text' placeholder='last name'
                         onChange={(event) => {
                             setLastName(event.target.value);
                         }}>
