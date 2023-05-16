@@ -22,6 +22,7 @@ const Item = () => {
   }
 
   const showInitiateBtn = () => {
+    console.log(itemDoc);
     return auth.currentUser.uid !== itemDoc.user_ref._key.path.segments.at(-1);
   }
 
