@@ -9,3 +9,4 @@ export { default as addingItem } from './addingItem.css';
 export { default as marketplace } from './marketplace.css';
 export { default as login } from './login.css';
 export { default as loading } from './loading.css';
+export { default as tab } from './tab.css';

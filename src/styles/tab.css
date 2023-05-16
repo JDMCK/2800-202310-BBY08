@@ -1,0 +1,7 @@
+.selected {
+    background-color: var(--primary);
+}
+
+.not-selected {
+    background-color: var(--secondary);
+}
