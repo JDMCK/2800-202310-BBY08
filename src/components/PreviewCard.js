@@ -52,7 +52,7 @@ const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
         await response.blob();
       } catch (error) {
         console.log(error);
-        navigate('/addItem');
+        navigate('/');
         window.location.reload();
       }
     }
