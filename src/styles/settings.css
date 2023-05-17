@@ -3,3 +3,31 @@
   padding: 0 1rem 1rem;
   border-bottom: 1px var(--light-grey) solid;
 }
+
+.settings-input {
+  width: 100%;
+}
+
+.settings-input::file-selector-button {
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--primary);
+  height: 1.5rem;
+}
+
+button.settings-input {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 3rem;
+  border: none;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 1rem;
+  width: 10rem;
+  height: 2.5rem;
+}
+
+button.settings-input:disabled {
+  background-color: var(--light-grey);
+}

@@ -75,10 +75,10 @@ function SignUp() {
                         <option value='25' label='25km'></option>
                         <option value='50' label='50km+'></option>
                     </datalist>
-                    <label htmlFor='range-input'>Trading Distance: <span>{range}</span></label>
+                    <label htmlFor='range-input'>Trading Distance: <span>{range + 'km'}</span></label>
                     <input id='range-input' type='range' min='5' max='50'
                         list='range-values' onChange={event => {
-                            setRange(event.target.value + 'km');
+                            setRange(event.target.value);
                         }}>
                     </input>
                     <p className='login-error'><b>{error}</b></p>

@@ -9,7 +9,6 @@ export { default as Trades } from "./Trades";
 export { default as Preview } from "./Preview";
 export { default as Item } from './Item';
 export { default as Settings } from './Settings';
-export { default as EditProfilePicture } from './EditProfilePicture';
 export { default as PrivateWrapper } from './PrivateWrapper';
 export { default as Loading } from './Loading';
 export { default as Conversations } from './Conversations';
