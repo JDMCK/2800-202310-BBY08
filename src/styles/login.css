@@ -42,8 +42,6 @@
 
 .user-form h1 {
   margin-top: 10px;
-
-
 }
 
 .user-form input {
@@ -59,7 +57,7 @@
 
 .user-form button {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: var(--secondary);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -70,7 +68,7 @@
 }
 
 .user-form button:hover {
-  background-color: #45a049;
+  background-color: var(--secondary);
 }
 
 .link-signup {
@@ -78,6 +76,5 @@
 }
 
 .login-error {
-  color: red;
+  color: #f1356d;
 }
-

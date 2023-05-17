@@ -12,4 +12,6 @@ export { default as Settings } from './Settings';
 export { default as EditProfilePicture } from './EditProfilePicture';
 export { default as PrivateWrapper } from './PrivateWrapper';
 export { default as Loading } from './Loading';
+export { default as Conversations } from './Conversations';
+export { default as Chat } from './Chat';
 export { default as Error404 } from './Error404';

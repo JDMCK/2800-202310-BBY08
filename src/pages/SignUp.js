@@ -35,15 +35,16 @@ function SignUp() {
             } else if (e.code === 'auth/email-already-in-use') {
                 setError('Email already in use.');
             } else {
-            setError('Failed to signup.');
-            console.error('Failed to signup.', e)
-        }}
+                setError('Failed to signup.');
+                console.error('Failed to signup.', e)
+            }
+        }
     };
 
 
     return (
         <>
-            <Navbar title='Barter Better' />
+            <Navbar title='BarterBetter' />
             <div className='user-form'>
                 <h1>Signup</h1>
                 <form onSubmit={event => event.preventDefault()}>

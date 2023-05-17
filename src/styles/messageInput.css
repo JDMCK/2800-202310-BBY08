@@ -1,0 +1,41 @@
+.message-input {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 1rem;
+}
+
+.message-input textarea {
+  border-radius: 1.2rem;
+  width: 70vw;
+  max-width: 20rem;
+  border: 1px solid black;
+  resize: none;
+  overflow: hidden;
+  padding-left: 0.5rem;
+  padding-right: 2.2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: medium;
+  height: auto;
+  max-height: 10rem;
+  /* box-shadow: 0 10px 20px var(--secondary); */
+}
+
+.message-input button {
+  position: absolute;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  aspect-ratio: 1;
+  width: 1.85rem;
+  right: 4px;
+  bottom: 8px;
+}
+
+.message-input img {
+  width: 1rem;
+  filter: invert();
+}
