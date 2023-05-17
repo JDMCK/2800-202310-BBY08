@@ -27,6 +27,7 @@ const Settings = () => {
   return (
     <>
       <Navbar title='Settings' backArrow={true} />
+      <div className='settings-container'>
       <div className='settings-item'>
         <h3>Email:</h3>
         <p>{userDoc && userDoc.email}</p>
@@ -40,6 +41,7 @@ const Settings = () => {
       </div>
       <div className='settings-item' onClick={handleLogout}>
         <h3>Logout</h3>
+      </div>
       </div>
     </>
   );

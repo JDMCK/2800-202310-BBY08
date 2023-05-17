@@ -109,6 +109,7 @@ const AddingItem = () => {
   }, [name, description, image]);
 
   return (
+    <div className='add-item-container'>
     <form className='form-input'>
       <div className='item-container'>
         <label htmlFor='item-name-input'>Item Name</label>
@@ -132,6 +133,7 @@ const AddingItem = () => {
         <button id='next-btn' disabled={disabled} type='button' onClick={() => { toPreview() }} >Next</button>
       </div>
     </form>
+    </div>
   );
 };
 

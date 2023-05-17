@@ -30,6 +30,7 @@ const Item = () => {
   return (
     <>
       <Navbar title='Item' backArrow={true} />
+      <div className='item-container-page'>
       <div className='item'>
         <div className='item-img'>
           <img src={itemDoc.picture_URL} alt={placeholderImage} />
@@ -37,6 +38,7 @@ const Item = () => {
         <h1>{itemDoc.item_name}</h1>
         <p>{itemDoc.description}</p>
         {showDelete() && <button disabled={disabledButton} onClick={handleDelete}>Delete</button>}
+      </div>
       </div>
       <Footer />
     </>

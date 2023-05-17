@@ -1,6 +1,6 @@
 .form-input {
   margin: auto;
-  max-width: 70%;
+  max-width: 80%;
   margin-top: 3rem;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .image-preview-container label {
-  width: 20vw;
+  width: 30vw;
   height: 45px;
   text-align: center;
   background: var(--primary);
@@ -162,4 +162,10 @@
   border: none;
   border-radius: 10px;
   box-shadow: 0 10px 10px var(--light-grey);
+}
+.add-item-container{
+  padding-top: 10px;
+  background-color: white;
+  margin: 1rem;
+  border-radius: 10px;
 }

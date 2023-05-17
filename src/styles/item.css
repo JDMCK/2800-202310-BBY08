@@ -1,8 +1,12 @@
 .item img {
   width: 100%;
+  max-width: 30rem;
+  /* border: .5px var(--light-grey) solid; */
   object-fit: cover;
   max-height: 25rem;
   max-width: 30rem;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .item-img {
@@ -27,3 +31,23 @@
 .item button:disabled {
   background-color: var(--light-grey);
 }
+
+.item {
+  height: 39rem;
+  background-color: white;
+  margin: 1rem;
+  padding: 0.5rem;
+  border: 5px white solid;
+  border-radius: 10px;
+  /* box-shadow: 0 5px 10px var(--light-grey); */
+  color: black;}
+
+
+.item-container-page{
+  max-width: 600px;
+  /* padding: 20px; */
+  background-color: var(--secondary);
+  height: 100vh;
+}
+
+
