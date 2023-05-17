@@ -11,4 +11,8 @@ export { default as login } from './login.css';
 export { default as chat } from './chat.css';
 export { default as messageInput } from './messageInput.css';
 export { default as conversations } from './conversations.css';
+<<<<<<< HEAD
 export { default as loading } from './loading.css';
+=======
+export { default as loading } from './loading.css';
+>>>>>>> 559620b5ba57ff1400912a554d01aeedb6e77fc3
