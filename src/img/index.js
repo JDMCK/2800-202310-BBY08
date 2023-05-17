@@ -1,5 +1,5 @@
 export { default as searchIcon } from './search.png';
-export { default as scrollIcon } from './scroll.png';
+export { default as chatIcon } from './chat.png';
 export { default as backArrowIcon } from './back_arrow.png';
 export { default as homeIcon } from './home.png';
 export { default as homeActiveIcon } from './home_active.png';
@@ -14,3 +14,4 @@ export { default as tradesActiveIcon } from './exchanging_active.png';
 export { default as gear } from './gear.png';
 export { default as placeholderImage } from './placeholder_image.png';
 export { default as placeholderProfilePicture } from './placeholder_profile_picture.png';
+export { default as upArrowIcon } from './up_arrow.png';

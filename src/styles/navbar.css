@@ -1,11 +1,12 @@
 nav {
   position: sticky;
   top: 0;
-  background-color: var(--primary);
-  color: var(--text-color);
+  background-color: white;
+  color: black;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   min-height: 5rem;
+  border-bottom: 1px var(--light-grey) solid;
   z-index: 20;
 }
 
@@ -16,7 +17,7 @@ nav button {
 
 nav img {
   width: 2rem;
-  filter: invert();
+  /* filter: invert(); */
 }
 
 nav h1 {
