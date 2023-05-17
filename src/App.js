@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import {
-  Home, Profile, SignUp, LogIn, ResetPassword, Groups, Error404, Chat,
+  Home, Profile, SignUp, LogIn, ResetPassword, Groups, Error404, Chat, Trading,
   Trades, AddItem, Item, Settings, Preview, PrivateWrapper, Conversations
 } from "./pages";
 
@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/addItem" element={<AddItem />} />
         <Route path="/addItem/preview" element={<Preview />} />
         <Route path="/trades" element={<Trades />} />
+        <Route path="/trading" element={<Trading />} />
         <Route path="/profile" element={<Profile />} />
         <Route path='/item' element={<Item />} />
         <Route path='/settings' element={<Settings />} />
