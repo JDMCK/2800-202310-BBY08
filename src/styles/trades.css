@@ -1,0 +1,14 @@
+.trade-tabs {
+  display: grid;
+  grid-template-areas:
+    'tab1 tab2';
+  grid-template-columns: 1fr 1fr;
+}
+
+#incomingTab {
+  grid-area: tab1;
+}
+
+#sentTab {
+  grid-area: tab2;
+}

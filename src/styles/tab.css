@@ -1,7 +1,9 @@
 .selected {
     background-color: var(--primary);
+    font-size: 18px;
 }
 
 .not-selected {
     background-color: var(--secondary);
+    font-size: 18px;
 }

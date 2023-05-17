@@ -10,7 +10,6 @@ import { deleteObject, ref } from 'firebase/storage';
 const Item = () => {
 
   const [disabledButton, setDisabledButton] = useState(false);
-  const [showInitiate, setShowInitiate] = useState('');
   const navigate = useNavigate();
 
   const location = useLocation();
