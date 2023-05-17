@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { auth, firestore, storage } from '../config/firebase';
@@ -39,13 +39,26 @@ const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
 
     localStorage.removeItem('name');
     localStorage.removeItem('description');
-    localStorage.removeItem('image');
-    localStorage.removeItem('file');
   }
 
   const goHome = () => {
     navigate('/');
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(imgSrc);
+        await response.blob();
+      } catch (error) {
+        console.log(error);
+        navigate('/');
+        window.location.reload();
+      }
+    }
+
+    fetchData();
+  });
 
   return (
     <>

@@ -76,8 +76,6 @@ const AddingItem = () => {
     // Save values to local storage so that these can be loaded when going back from preview page
     localStorage.setItem('name', name);
     localStorage.setItem('description', description);
-    localStorage.setItem('image', image);
-    localStorage.setItem('file', file);
 
     navigate('/addItem/preview', { state: { itemName: name, itemDescription: description, imageSrc: image, file: file } });
   }
@@ -86,8 +84,6 @@ const AddingItem = () => {
   useEffect(() => {
     var savedName = localStorage.getItem('name');
     var savedDescription = localStorage.getItem('description');
-    var savedImage = localStorage.getItem('image');
-    var savedFile = localStorage.getItem('file');
 
     if (savedName !== null) {
       setName(savedName);
@@ -96,15 +92,6 @@ const AddingItem = () => {
     if (savedDescription !== null) {
       setDescription(savedDescription);
       document.getElementById('item-description-input').value = savedDescription;
-    }
-    if (savedImage !== null) {
-      document.getElementById('preview-selected-image').style.display = 'block';
-      document.querySelector('#remove-img').removeAttribute('hidden');
-      setImage(savedImage);
-      document.getElementById('preview-selected-image').src = savedImage;
-    }
-    if (savedFile !== null) {
-      setFile(savedFile)
     }
     setDisabled(true);
   }, []);
