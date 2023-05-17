@@ -24,7 +24,6 @@ const useConditionalFetch = (path, type, firestorePath) => {
       if (storageValue) {
         setValue(storageValue);
       } else {
-        console.log('PLEESE DON"T SEE THIS');
         try {
           if (type === 'doc') {
             let firestoreValue = await getDoc(firestoreRef);

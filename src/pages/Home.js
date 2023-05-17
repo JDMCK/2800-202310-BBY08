@@ -5,12 +5,8 @@ import useConditionalFetch from "../hooks/useConditionalFetch";
 
 const Home = () => {
 
-  // const itemsCollectionRef = collection(firestore, 'items');
-  // const [items] = useCollectionDataOnce(itemsCollectionRef);
   const [items] = useConditionalFetch('allItems', 'col', 'items');
   const navigate = useNavigate();
-
-  // console.log(items && JSON.parse(items));
 
   return (
     <>

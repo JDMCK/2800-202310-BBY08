@@ -33,7 +33,7 @@ const ConversationCard = ({ conversationRef }) => {
   }
 
   const messagesRef = collection(firestore, 'conversations', conversationRef.id, 'messages');
-  const messagesQuery = query(messagesRef, orderBy('created_at'), limit(1));
+  const messagesQuery = query(messagesRef, orderBy('created_at', 'desc'), limit(1));
   const [lastMessage] = useCollectionDataOnce(messagesQuery);
 
   const handleClick = () => {
