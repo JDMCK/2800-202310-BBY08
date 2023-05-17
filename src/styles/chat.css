@@ -1,0 +1,45 @@
+.background {
+  /* position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(white, var(--primary)); */
+}
+
+.messages {
+  margin: 1rem;
+  margin-bottom: 4rem;
+}
+
+.chat-message {
+  padding: 0.75rem;
+  max-width: 75vw;
+  border-radius: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2 5rem;
+  background-color: var(--secondary);
+  border-bottom-right-radius: 0;
+  color: white;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.chat-message p {
+  margin: 0;
+  padding: 0;
+}
+
+.chat-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat-container.recieved {
+  justify-content: flex-start;
+}
+
+.recieved .chat-message {
+  background-color: lightgray;
+  border-radius: 1rem;
+  border-bottom-left-radius: 0;
+  color: black;
+}

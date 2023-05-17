@@ -14,15 +14,15 @@ const Item = () => {
 
   const location = useLocation();
   const itemDoc = JSON.parse(location.state.item);
-  const itemRef = location.state.itemRef || '';
+  const itemId = location.state.itemId || '';
 
   const showDelete = () => {
-    return auth.currentUser.uid === itemDoc.user_ref._key.path.segments.at(-1) && itemRef;
+    return auth.currentUser.uid === itemDoc.user_ref._key.path.segments.at(-1) && itemId;
   }
 
   const handleDelete = async () => {
     setDisabledButton(true);
-    await deleteDoc(doc(firestore, 'items', itemRef));
+    await deleteDoc(doc(firestore, 'items', itemId));
     await deleteObject(ref(storage, itemDoc.picture_URL));
     navigate(-1);
   }

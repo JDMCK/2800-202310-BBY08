@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCollectionDataOnce, useCollectionOnce, useDocumentDataOnce } from 'react-firebase-hooks/firestore';
 import { collection, doc, query, where } from 'firebase/firestore';
 import { auth, firestore } from "../config/firebase";
-import { placeholderImage, placeholderProfilePicture } from '../img';
-
+import { placeholderImage } from '../img';
 import { gear } from '../img';
 
 const Profile = () => {
@@ -22,8 +21,8 @@ const Profile = () => {
   );
 
   // Button handlers
-  const handleItemClick = (item, itemRef) =>
-    navigate('/item', { state: { item: JSON.stringify(item), itemRef: itemRef } });
+  const handleItemClick = (item, itemId) =>
+    navigate('/item', { state: { item: JSON.stringify(item), itemId: itemId } });
   const handleSettings = () => navigate('/settings', { state: JSON.stringify(userDoc) });
   const description = '⭐⭐⭐⭐⭐';
 
@@ -37,7 +36,7 @@ const Profile = () => {
       ]} />
       <section className='profile'>
         <div className='profile-picture'>
-          <img src={userDoc && userDoc.profile_picture_URL} alt={placeholderProfilePicture} />
+          <img src={userDoc && userDoc.profile_picture_URL} alt='' />
         </div>
         <h1>{userDoc && userDoc.first_name + ' ' + userDoc.last_name}</h1>
         <p>{description}</p>

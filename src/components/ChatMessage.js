@@ -1,6 +1,10 @@
-const ChatMessage = () => {
+const ChatMessage = ({ me, message }) => {
   return (
-    <p>{'Yo I want your clock. Please give it to me.'}</p>
+    <div className={'chat-container' + (me ? '' : ' recieved')}>
+      <div className='chat-message'>
+        <p>{message.message}</p>
+      </div>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import {
-  Home, Profile, SignUp, LogIn, ResetPassword, Groups, Error404,
+  Home, Profile, SignUp, LogIn, ResetPassword, Groups, Error404, Chat,
   Trades, AddItem, Item, Settings, Preview, PrivateWrapper, Conversations
 } from "./pages";
 

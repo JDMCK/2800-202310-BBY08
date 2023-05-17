@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { Navbar, Footer, MarketplaceCard } from "../components";
-import { scrollIcon, searchIcon } from "../img";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
-import { firestore } from "../config/firebase";
+import { chatIcon, searchIcon } from "../img";
+import useConditionalFetch from "../hooks/useConditionalFetch";
 
 const Home = () => {
 
-  const itemsCollectionRef = collection(firestore, 'items');
-  const [items] = useCollectionDataOnce(itemsCollectionRef);
-
+  // const itemsCollectionRef = collection(firestore, 'items');
+  // const [items] = useCollectionDataOnce(itemsCollectionRef);
+  const [items] = useConditionalFetch('allItems', 'col', 'items');
   const navigate = useNavigate();
+
+  // console.log(items && JSON.parse(items));
 
   return (
     <>
@@ -24,15 +24,15 @@ const Home = () => {
             },
           },
           {
-            icon: scrollIcon,
+            icon: chatIcon,
             onclick: () => {
-              navigate("/");
+              navigate("/conversations");
             },
           },
         ]}
       />
       <div className='marketplace-feed'>
-        {items && items.map((item, i) => (
+        {items && JSON.parse(items).map((item, i) => (
           <MarketplaceCard key={i} item={item} />
         ))}
       </div>
