@@ -24,7 +24,6 @@ const Profile = () => {
   const handleItemClick = (item, itemId) =>
     navigate('/item', { state: { item: JSON.stringify(item), itemId: itemId } });
   const handleSettings = () => navigate('/settings', { state: JSON.stringify(userDoc) });
-  const description = '⭐⭐⭐⭐⭐';
 
   return (
     <>
@@ -41,7 +40,6 @@ const Profile = () => {
           <img src={userDoc && userDoc.profile_picture_URL} alt='' />
         </div>
         <h1>{userDoc && userDoc.first_name + ' ' + userDoc.last_name}</h1>
-        {/* <p>{description}</p> */}
       </section>
       <section className='profile-inventory'>
         {items && items.map((item, i) =>
