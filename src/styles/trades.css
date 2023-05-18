@@ -17,13 +17,13 @@
 }
 
 .selected {
-  background-color: var(--primary);
+  color: white;
+  background-color: var(--secondary);
   font-size: 18px;
 }
 
 .not-selected {
-  color: white;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   font-size: 18px;
 }
 
@@ -52,4 +52,5 @@
 .trades-content {
   background-color: green;
   padding-bottom: 5rem;
+  min-height: 80vh;
 }

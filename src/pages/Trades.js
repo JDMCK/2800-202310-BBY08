@@ -2,15 +2,18 @@ import { useState, } from 'react';
 import { collection, doc, query, where } from 'firebase/firestore';
 import { auth, firestore } from "../config/firebase";
 import { Footer, Navbar, Tab, TradeCard } from "../components";
-import { useCollectionDataOnce, useCollectionOnce } from 'react-firebase-hooks/firestore';
+import { useCollectionDataOnce, useCollectionOnce, useDocumentDataOnce } from 'react-firebase-hooks/firestore';
 
 const Trades = () => {
   // States for tabs
   const [incomingSelected, setIncomingSelected] = useState(true);
   const [sentSelected, setSentSelected] = useState(false);
 
+  // Get the current user's name
   const userDocRef = doc(firestore, `users/${auth.currentUser.uid}`);
+  const [userDoc] = useDocumentDataOnce(userDocRef);
 
+  // Get the list of trades
   const tradesRef = collection(firestore, 'trades');
   const [incomingTradesRef] = useCollectionOnce(query(tradesRef, where('sender_ref', '==', userDocRef)));
   const [incomingTrades] = useCollectionDataOnce(query(tradesRef, where('sender_ref', '==', userDocRef)));
@@ -44,11 +47,11 @@ const Trades = () => {
         <div id='trades'>
           {incomingSelected && incomingTrades &&
             incomingTrades.map((trade, i) =>
-              <TradeCard key={i} tradeData={trade} type='incoming' tradeID={incomingTradesRef.docs[i].id}/>)
+              <TradeCard key={i} tradeData={trade} type='incoming' tradeID={incomingTradesRef.docs[i].id} myName={userDoc.first_name + ' ' + userDoc.last_name}/>)
           }
           {sentSelected && sentTrades &&
             sentTrades.map((trade, i) =>
-              <TradeCard key={i} tradeData={trade} type='sent' tradeID={sentTradesRef.docs[i].id}/>)
+              <TradeCard key={i} tradeData={trade} type='sent' tradeID={sentTradesRef.docs[i].id} myName={userDoc.first_name + ' ' + userDoc.last_name}/>)
           }
         </div>
       </div>

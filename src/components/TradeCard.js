@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { firestore } from "../config/firebase";
 import { collection, doc, getDoc, query, where } from 'firebase/firestore';
 import { trading, placeholderImage } from '../img';
 import InventoryItem from './InventoryItem';
 
-const TradeCard = ({ tradeData, type, tradeID }) => {
+const TradeCard = ({ tradeData, type, tradeID, myName }) => {
   const [theirName, setTheirName] = useState('');
 
   const mySelected = [];
@@ -16,9 +16,10 @@ const TradeCard = ({ tradeData, type, tradeID }) => {
 
   // The size will always be three or less
   const receiverSize = tradeData.receiver_selected.length > 3 ? 3 : tradeData.receiver_selected.length;
-  const senderSize = tradeData.sender_selected.length > 3 ? 3 : tradeData.sender_selected.length; 
+  const senderSize = tradeData.sender_selected.length > 3 ? 3 : tradeData.sender_selected.length;
 
   // If type is incoming, reciever will be the current user, otherwise sender is current user
+  // Get the respective reference to both user's names
   if (type === 'incoming') {
     for (let i = 0; i < receiverSize; i++) {
       mySelected.push(tradeData.receiver_selected[i].id);
@@ -32,28 +33,31 @@ const TradeCard = ({ tradeData, type, tradeID }) => {
       theirSelected.push(tradeData.receiver_selected[i].id);
     }
     for (let j = 0; j < senderSize; j++) {
-      mySelected.push(tradeData.sender_selected[j].id); 
+      mySelected.push(tradeData.sender_selected[j].id);
     }
     theirNameID = tradeData.sender_ref.id;
   }
 
-  const getTheirName = async () => {
-    const docRef = doc(firestore, 'users', theirNameID);
+  // 
+  useEffect(() => {
+    const getTheirName = async () => {
+      const docRef = doc(firestore, 'users', theirNameID);
 
-    try {
-      const docSnapshot = await getDoc(docRef);
+      try {
+        const docSnapshot = await getDoc(docRef);
 
-      if (docSnapshot.exists()) {
-        setTheirName(docSnapshot.data().first_name + ' ' + docSnapshot.data().last_name);
-      } else {
-        setTheirName('No name');
+        if (docSnapshot.exists()) {
+          setTheirName(docSnapshot.data().first_name + ' ' + docSnapshot.data().last_name);
+        } else {
+          setTheirName('No name');
+        }
+      } catch (error) {
+        console.error('Error fetching name: ', error);
       }
-    } catch(error) {
-      console.error('Error fetching name: ', error);
     }
-  }
 
-  getTheirName();
+    getTheirName();
+  }, [theirNameID]);
 
 
 
@@ -62,7 +66,7 @@ const TradeCard = ({ tradeData, type, tradeID }) => {
   const [theirSelectedItems] = useCollectionDataOnce(query(collection(firestore, 'items'), where('__name__', 'in', theirSelected)));
 
   const goCurrentTrade = () => {
-    navigate('/trading', {state: {tradeData: JSON.stringify(tradeData), type: type, tradeID: tradeID}});
+    navigate('/trading', { state: { tradeData: JSON.stringify(tradeData), type: type, tradeID: tradeID, theirName: theirName, myName: myName } });
   }
 
   return (
