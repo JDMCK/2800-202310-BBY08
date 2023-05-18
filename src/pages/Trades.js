@@ -15,10 +15,10 @@ const Trades = () => {
 
   // Get the list of trades
   const tradesRef = collection(firestore, 'trades');
-  const [incomingTradesRef] = useCollectionOnce(query(tradesRef, where('sender_ref', '==', userDocRef)));
-  const [incomingTrades] = useCollectionDataOnce(query(tradesRef, where('sender_ref', '==', userDocRef)));
-  const [sentTradesRef] = useCollectionOnce(query(tradesRef, where('receiver_ref', '==', userDocRef)));
-  const [sentTrades] = useCollectionDataOnce(query(tradesRef, where('receiver_ref', '==', userDocRef)));
+  const [incomingTradesRef] = useCollectionOnce(query(tradesRef, where('sender_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
+  const [incomingTrades] = useCollectionDataOnce(query(tradesRef, where('sender_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
+  const [sentTradesRef] = useCollectionOnce(query(tradesRef, where('receiver_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
+  const [sentTrades] = useCollectionDataOnce(query(tradesRef, where('receiver_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
 
   // Onclick functions for tabs
   const displayIncoming = () => {
