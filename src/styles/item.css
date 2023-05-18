@@ -1,10 +1,8 @@
 .item img {
   width: 100%;
   max-width: 30rem;
-  /* border: .5px var(--light-grey) solid; */
   object-fit: cover;
   max-height: 25rem;
-  max-width: 30rem;
   border-radius: 5px;
   margin-bottom: 10px;
 }
@@ -33,21 +31,23 @@
 }
 
 .item {
-  height: 39rem;
   background-color: white;
-  margin: 1rem;
+  max-width: 30rem;
+  margin: 0.75rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   border: 5px white solid;
   border-radius: 10px;
   /* box-shadow: 0 5px 10px var(--light-grey); */
-  color: black;}
+}
 
 
 .item-container-page{
-  max-width: 600px;
-  /* padding: 20px; */
+  max-width: 600px; 
   background-color: var(--secondary);
   height: 100vh;
+
+  margin: auto;
 }
 
 

@@ -21,6 +21,7 @@ const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
       const docRef = await addDoc(itemsColRef, {
         item_name: itemName,
         description: itemDesc,
+        timeStamp: new Date(),
         user_ref: userRef
       });
       const storageRef = ref(storage, `item_pictures/${docRef.id}`);
