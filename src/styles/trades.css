@@ -17,13 +17,13 @@
 }
 
 .selected {
-  color: white;
-  background-color: var(--secondary);
+  color: black;
+  background-color: var(--primary);
   font-size: 18px;
 }
 
 .not-selected {
-  background-color: var(--primary);
+  background-color: white;
   font-size: 18px;
 }
 
@@ -50,7 +50,7 @@
 
 /* Styling for myTradesBG */ 
 .trades-content {
-  background-color: green;
+  background-color: var(--secondary);
   padding-bottom: 5rem;
   min-height: 80vh;
 }
