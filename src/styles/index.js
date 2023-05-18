@@ -12,3 +12,4 @@ export { default as chat } from './chat.css';
 export { default as messageInput } from './messageInput.css';
 export { default as conversations } from './conversations.css';
 export { default as loading } from './loading.css';
+export { default as trades } from './trades.css'

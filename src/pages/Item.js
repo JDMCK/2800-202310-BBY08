@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { deleteObject, ref } from 'firebase/storage';
 
 const Item = () => {
-
   const [disabledButton, setDisabledButton] = useState(false);
   const navigate = useNavigate();
 
