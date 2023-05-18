@@ -103,6 +103,7 @@ const Settings = () => {
       <button id='settings-save' className='settings-input' onClick={handleSave}>
         Save
       </button>
+      </div>
     </>
   );
 }
