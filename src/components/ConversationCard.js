@@ -11,6 +11,8 @@ const ConversationCard = ({ conversationRef }) => {
   const [user1] = useDocumentDataOnce(user1Ref);
   const [user2] = useDocumentDataOnce(user2Ref);
 
+  console.log(conversationRef);
+
   const navigate = useNavigate();
 
   let to;
