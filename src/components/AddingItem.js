@@ -76,7 +76,6 @@ const AddingItem = () => {
     // Save values to local storage so that these can be loaded when going back from preview page
     localStorage.setItem('name', name);
     localStorage.setItem('description', description);
-
     navigate('/addItem/preview', { state: { itemName: name, itemDescription: description, imageSrc: image, file: file } });
   }
 
@@ -84,7 +83,8 @@ const AddingItem = () => {
   useEffect(() => {
     var savedName = localStorage.getItem('name');
     var savedDescription = localStorage.getItem('description');
-
+    // var timeStamp = new Date();
+    // setTimeStamp(timeStamp.seconds);
     if (savedName !== null) {
       setName(savedName);
       document.getElementById('item-name-input').value = savedName;
@@ -109,6 +109,7 @@ const AddingItem = () => {
   }, [name, description, image]);
 
   return (
+    <div className='add-item-container'>
     <form className='form-input'>
       <div className='item-container'>
         <label htmlFor='item-name-input'>Item Name</label>
@@ -132,6 +133,7 @@ const AddingItem = () => {
         <button id='next-btn' disabled={disabled} type='button' onClick={() => { toPreview() }} >Next</button>
       </div>
     </form>
+    </div>
   );
 };
 

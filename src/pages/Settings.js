@@ -69,6 +69,7 @@ const Settings = () => {
   return (
     <>
       <Navbar title='Settings' backArrow={true} />
+      <div className='settings-container'>
       <div className='settings-item'>
         <h3>Email:</h3>
         <p>{userDoc && userDoc.email}</p>
@@ -102,6 +103,7 @@ const Settings = () => {
       <button id='settings-save' className='settings-input' onClick={handleSave}>
         Save
       </button>
+      </div>
     </>
   );
 }
