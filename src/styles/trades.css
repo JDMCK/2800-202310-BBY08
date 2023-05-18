@@ -11,27 +11,30 @@
   padding: 0.3rem;
   border: none;
   border-radius: 5rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.75rem;
   transition: all 0.2s linear;
 }
 
 .selected {
-  color: white;
-  background-color: var(--secondary);
-  font-size: 18px;
-}
-
-.not-selected {
   background-color: var(--primary);
   font-size: 18px;
 }
 
+.not-selected {
+  background-color: white;
+  font-size: 18px;
+}
+
 /* Styling for trading symbol */
-.trade-icon-container {
+.trade-middle-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.trade-middle-container img {
+  rotate: 90deg;
 }
 
 #trading-symbol {
@@ -44,13 +47,21 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  justify-items: center;
-  align-items: center;
+  border-radius: 0.65rem;
+  border: 1px solid var(--light-grey);
+  overflow: auto;
 }
 
-/* Styling for myTradesBG */ 
+/* Styling for myTradesBG */
 .trades-content {
-  background-color: green;
+  background-color: var(--secondary);
   padding-bottom: 5rem;
   min-height: 80vh;
+}
+
+.trade-card {
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  background-color: white;
+  margin: 0.5rem;
 }

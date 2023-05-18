@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { firestore } from "../config/firebase";
 import { collection, doc, getDoc, query, where } from 'firebase/firestore';
-import { trading, placeholderImage } from '../img';
+import { tradesIcon, placeholderImage } from '../img';
 import InventoryItem from './InventoryItem';
 
 const TradeCard = ({ tradeData, type, tradeID, myName }) => {
@@ -27,7 +27,7 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
     for (let j = 0; j < senderSize; j++) {
       theirSelected.push(tradeData.sender_selected[j].id);
     }
-    theirNameID = tradeData.receiver_ref.id;
+    theirNameID = tradeData.sender_ref.id;
   } else {
     for (let i = 0; i < receiverSize; i++) {
       theirSelected.push(tradeData.receiver_selected[i].id);
@@ -35,7 +35,7 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
     for (let j = 0; j < senderSize; j++) {
       mySelected.push(tradeData.sender_selected[j].id);
     }
-    theirNameID = tradeData.sender_ref.id;
+    theirNameID = tradeData.receiver_ref.id;
   }
 
   // 
@@ -70,17 +70,18 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
   }
 
   return (
-    <div className='marketplace-card' onClick={goCurrentTrade}>
-      <p>Your selected item's</p>
+    <div className='trade-card' onClick={goCurrentTrade}>
+      <h1>{theirName}</h1>
       <section className='selected-inventory'>
         {theirSelectedItems && theirSelectedItems.map((item, i) =>
           <InventoryItem key={i} onClick={undefined} thumbnail={item.picture_URL ? item.picture_URL : placeholderImage} />)
         }
       </section>
-      <div className='trade-icon-container'>
-        <img id='trading-symbol' src={trading} alt='Trading' />
+      <div className='trade-middle-container'>
+        <h2>Requested Items</h2>
+        <img id='trading-symbol' src={tradesIcon} alt='Trading' />
+        <h2>Offered Items</h2>
       </div>
-      <p>{theirName}'s selected Items </p>
       <section className='selected-inventory'>
         {mySelectedItems && mySelectedItems.map((item, i) =>
           <InventoryItem key={i} onClick={undefined} thumbnail={item.picture_URL ? item.picture_URL : placeholderImage} />)

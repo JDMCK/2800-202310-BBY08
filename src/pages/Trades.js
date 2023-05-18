@@ -15,10 +15,10 @@ const Trades = () => {
 
   // Get the list of trades
   const tradesRef = collection(firestore, 'trades');
-  const [incomingTradesRef] = useCollectionOnce(query(tradesRef, where('sender_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
-  const [incomingTrades] = useCollectionDataOnce(query(tradesRef, where('sender_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
-  const [sentTradesRef] = useCollectionOnce(query(tradesRef, where('receiver_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
-  const [sentTrades] = useCollectionDataOnce(query(tradesRef, where('receiver_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
+  const [incomingTradesRef] = useCollectionOnce(query(tradesRef, where('receiver_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
+  const [incomingTrades] = useCollectionDataOnce(query(tradesRef, where('receiver_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
+  const [sentTradesRef] = useCollectionOnce(query(tradesRef, where('sender_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
+  const [sentTrades] = useCollectionDataOnce(query(tradesRef, where('sender_ref', '==', userDocRef), where('trade_status', '==', 'incomplete')));
 
   // Onclick functions for tabs
   const displayIncoming = () => {
@@ -47,11 +47,11 @@ const Trades = () => {
         <div id='trades'>
           {incomingSelected && incomingTrades &&
             incomingTrades.map((trade, i) =>
-              <TradeCard key={i} tradeData={trade} type='incoming' tradeID={incomingTradesRef.docs[i].id} myName={userDoc.first_name + ' ' + userDoc.last_name}/>)
+              <TradeCard key={i} tradeData={trade} type='incoming' tradeID={incomingTradesRef.docs[i].id} myName={userDoc.first_name + ' ' + userDoc.last_name} />)
           }
           {sentSelected && sentTrades &&
             sentTrades.map((trade, i) =>
-              <TradeCard key={i} tradeData={trade} type='sent' tradeID={sentTradesRef.docs[i].id} myName={userDoc.first_name + ' ' + userDoc.last_name}/>)
+              <TradeCard key={i} tradeData={trade} type='sent' tradeID={sentTradesRef.docs[i].id} myName={userDoc.first_name + ' ' + userDoc.last_name} />)
           }
         </div>
       </div>

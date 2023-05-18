@@ -5,5 +5,6 @@ export { default as AddingItem } from './AddingItem';
 export { default as PreviewCard } from './PreviewCard';
 export { default as MarketplaceCard } from './MarketplaceCard';
 export { default as Confirmation } from './Confirmation';
+export { default as EditTradeModal } from './EditTradeModal';
 export { default as Tab } from './Tab';
 export { default as TradeCard } from './TradeCard';

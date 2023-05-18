@@ -11,3 +11,8 @@
   object-fit: cover;
   vertical-align: middle;
 }
+
+.inventory-item-selected {
+  outline: 6px solid var(--primary);
+  outline-offset: -5px;
+}

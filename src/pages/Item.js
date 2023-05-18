@@ -26,6 +26,21 @@ const Item = () => {
     navigate(-1);
   }
 
+  const showInitiateTrade = () => {
+    return auth.currentUser.uid !== itemDoc.user_ref._key.path.segments.at(-1);
+  }
+
+  const handleInitiateTrade = () => {
+    const stateData = {
+      tradeData: JSON.stringify({ test: true }),
+      type: 'incoming',
+      tradeID: '',
+      theirName: '',
+      myName: ''
+    }
+    navigate('/trading', { state: stateData });
+  }
+
   return (
     <>
       <Navbar title='Item' backArrow={true} />

@@ -1,0 +1,40 @@
+.inventory-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 75%;
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 5px 20px black;
+  padding: 0.5rem;
+}
+
+.inventory-modal:focus {
+  outline: none;
+}
+
+.inventory-modal-items {
+  border: 1px solid var(--light-grey);
+  border-radius: 0.65rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  max-height: 20rem;
+  overflow: auto;
+}
+
+.trade-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-trade-button {
+  border: none;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 1rem;
+  height: 2.5rem;
+  width: 8rem;
+  margin: 1rem;
+}
