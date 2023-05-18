@@ -6,4 +6,4 @@ export { default as PreviewCard } from './PreviewCard';
 export { default as MarketplaceCard } from './MarketplaceCard';
 export { default as Confirmation } from './Confirmation';
 export { default as Tab } from './Tab';
-export { default as Inventory } from './Inventory';
+export { default as TradeCard } from './TradeCard';

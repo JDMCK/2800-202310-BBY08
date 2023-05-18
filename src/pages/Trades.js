@@ -1,13 +1,21 @@
-import { useState } from 'react';
-import { Footer, Navbar, Tab } from "../components";
+import { useState, } from 'react';
+import { collection, doc, query, where } from 'firebase/firestore';
+import { auth, firestore } from "../config/firebase";
+import { Footer, Navbar, Tab, TradeCard } from "../components";
+import { useCollectionDataOnce, useCollectionOnce } from 'react-firebase-hooks/firestore';
 
 const Trades = () => {
+  // States for tabs
   const [incomingSelected, setIncomingSelected] = useState(true);
   const [sentSelected, setSentSelected] = useState(false);
 
-  // Names for tabs
-  let incoming = 'Incoming Offers';
-  let sent = 'Sent Offers'
+  const userDocRef = doc(firestore, `users/${auth.currentUser.uid}`);
+
+  const tradesRef = collection(firestore, 'trades');
+  const [incomingTradesRef] = useCollectionOnce(query(tradesRef, where('sender_ref', '==', userDocRef)));
+  const [incomingTrades] = useCollectionDataOnce(query(tradesRef, where('sender_ref', '==', userDocRef)));
+  const [sentTradesRef] = useCollectionOnce(query(tradesRef, where('receiver_ref', '==', userDocRef)));
+  const [sentTrades] = useCollectionDataOnce(query(tradesRef, where('receiver_ref', '==', userDocRef)));
 
   // Onclick functions for tabs
   const displayIncoming = () => {
@@ -24,16 +32,25 @@ const Trades = () => {
     }
   };
 
+
   return (
     <>
       <Navbar title="Trades" />
-      <div className='trade-tabs'>
-        <Tab id='incomingTab' onClick={() => displayIncoming()} selected={incomingSelected} tabName={incoming} />
-        <Tab id='sentTab' onClick={() => displaySent()} selected={sentSelected} tabName={sent} />
-      </div>
-      <div id='trades'>
-        {incomingSelected && <p>Incoming offers stuff</p>}
-        {sentSelected && <p>Sent offers stuff</p>}
+      <div className='trades-content'>
+        <div className='trade-tabs'>
+          <Tab id='incomingTab' onClick={() => displayIncoming()} selected={incomingSelected} tabName='Incoming Offers' />
+          <Tab id='sentTab' onClick={() => displaySent()} selected={sentSelected} tabName='Sent Offers' />
+        </div>
+        <div id='trades'>
+          {incomingSelected && incomingTrades &&
+            incomingTrades.map((trade, i) =>
+              <TradeCard key={i} tradeData={trade} type='incoming' tradeID={incomingTradesRef.docs[i].id}/>)
+          }
+          {sentSelected && sentTrades &&
+            sentTrades.map((trade, i) =>
+              <TradeCard key={i} tradeData={trade} type='sent' tradeID={sentTradesRef.docs[i].id}/>)
+          }
+        </div>
       </div>
       <Footer />
     </>
