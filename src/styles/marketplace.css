@@ -14,7 +14,7 @@
   margin: auto;
   width: 100%;
   max-width: 30rem;
-  border: 1px var(--light-grey) solid;
+  border: 0.5px var(--light-grey) solid;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -23,13 +23,60 @@
   padding-left: 0.25rem;
 }
 
+
+.marketplace-feed {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--secondary);
+  padding-bottom: 5rem;
+  padding-top: 1rem;
+}
+
 .timestamp {
   text-align: end;
   font-size: small;
 }
 
-.marketplace-feed {
-  background-color: var(--secondary);
-  padding-bottom: 5rem;
-  padding-top: 1rem;
+/* .bottom-row{
+  display:grid;
+  grid-template-areas: "posting"
+  "img name timestamp";
+} */
+.posted-by {
+  padding-top: 0.5rem;
+  font-size: small;
 }
+/* 
+#posting{
+  grid-area: posting;
+}
+
+#profPic{
+  grid-area: img;
+}
+#name{
+  grid-area: name;
+}
+#timestamp{
+  grid-area: timestamp;
+}
+. */
+.bottom-row img{ 
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 100%; 
+  object-fit: cover;
+}
+.bottom-row {
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom:0;
+  left:0;
+  right:0;
+}
+

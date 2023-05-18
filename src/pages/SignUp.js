@@ -12,7 +12,6 @@ function SignUp() {
     const [registerFirstName, setFirstName] = useState("");
     const [registerLastName, setLastName] = useState("");
     const [range, setRange] = useState('50km');
-
     const [error, setError] = useState('');
 
     const register = async () => {
