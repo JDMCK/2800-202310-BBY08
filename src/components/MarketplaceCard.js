@@ -48,14 +48,7 @@ const MarketplaceCard = ({ item }) => {
 
   const handleItemClick = () => {
     navigate('/item', { state: { item: JSON.stringify(item) } });
-  }
-  
-  //formats the time for the timestamp
-  const getFormattedDate = (seconds) => {
-    const adjustedDate = new Date((60 + seconds) * 1000);
-    return adjustedDate.toLocaleDateString([], { hour: "2-digit", minute: "2-digit", hour12: true });
-  }
-
+  };
 
   const getTimeSincePosted = (timestamp) => {
     const currentTime = new Date();
@@ -99,14 +92,10 @@ const MarketplaceCard = ({ item }) => {
         <b>{item.location}</b>
       </div>
       <div className='bottom-row'>
-      <div className='posted-by'>
-        <p>Posted by:</p>
-        <p><img src={picURL} alt='profile' />
+        <p id='posting'>Posted by:</p>
+        <p id='prof'><img src={picURL} alt='profile' />
         {firstName} {lastName}</p>
         {item.timeStamp && <p className='timestamp'>{getTimeSincePosted(item.timeStamp.seconds)}</p>}
-      </div>
-      
-
       </div>
     </div>
   );
