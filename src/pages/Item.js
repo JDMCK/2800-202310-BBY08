@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { deleteObject, ref } from 'firebase/storage';
 
 const Item = () => {
-
   const [disabledButton, setDisabledButton] = useState(false);
   const navigate = useNavigate();
 
@@ -20,20 +19,11 @@ const Item = () => {
     return auth.currentUser.uid === itemDoc.user_ref._key.path.segments.at(-1) && itemRef;
   }
 
-  const showInitiateBtn = () => {
-    console.log(itemDoc);
-    return auth.currentUser.uid !== itemDoc.user_ref._key.path.segments.at(-1);
-  }
-
   const handleDelete = async () => {
     setDisabledButton(true);
     await deleteDoc(doc(firestore, 'items', itemRef));
     await deleteObject(ref(storage, itemDoc.picture_URL));
     navigate(-1);
-  }
-
-  const initiateTrade = () => {
-    navigate('/initiateTrade');
   }
 
   return (
@@ -46,7 +36,6 @@ const Item = () => {
         <h1>{itemDoc.item_name}</h1>
         <p>{itemDoc.description}</p>
         {showDelete() && <button disabled={disabledButton} onClick={handleDelete}>Delete</button>}
-        {showInitiateBtn() && <button onClick={initiateTrade}>Initiate Trade</button>}
       </div>
       <Footer />
     </>
