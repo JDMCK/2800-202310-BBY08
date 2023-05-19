@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Navbar, Footer, MarketplaceCard } from "../components";
-import { chatIcon, searchIcon } from "../img";
+import { chatIcon, searchIcon, logo } from "../img";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../config/firebase";
@@ -24,7 +24,7 @@ const Home = () => {
     <>
       <div className='marketplace-feed'>
         <Navbar
-          title="BarterBetter"
+        title={<img src={logo} alt='BarterBetter' className='nav-logo'/>}
           navButtons={[
             {
               icon: searchIcon,
