@@ -16,6 +16,7 @@
 }
 
 .selected {
+  color: black;
   background-color: var(--primary);
   font-size: 18px;
 }
