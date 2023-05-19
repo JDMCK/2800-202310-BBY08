@@ -47,7 +47,7 @@ const Trading = () => {
     }
     getItems(receiverSelectedIds, setReceiverItems, initialReceiverItems);
     getItems(senderSelectedIds, setSenderItems, initialSenderItems);
-  }, [initialOffer, receiverSelectedIds, senderSelectedIds]);
+  }, []);
 
   // Button handlers
   const handleEditOffer = () => {
