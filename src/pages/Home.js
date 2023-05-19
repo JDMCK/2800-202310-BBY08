@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Footer, MarketplaceCard } from "../components";
 import { chatIcon, searchIcon, logo } from "../img";
 import { useEffect, useState } from "react";
@@ -24,7 +24,11 @@ const Home = () => {
     <>
       <div className='marketplace-feed'>
         <Navbar
-        title={<img src={logo} alt='BarterBetter' className='nav-logo'/>}
+          title={
+            <Link to={'/og'}>
+              <img src={logo} alt='BarterBetter' className='nav-logo' />
+            </Link>
+          }
           navButtons={[
             {
               icon: searchIcon,

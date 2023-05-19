@@ -6,11 +6,13 @@
 
 .og-page h2 {
   text-align: center;
+  color: white;
 }
 
 .og-page p {
   text-align: center;
   font-size: 18px;
+  color: white
 }
 
 /* Styling for the buttons */
