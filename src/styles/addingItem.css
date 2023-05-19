@@ -2,13 +2,23 @@
   margin: auto;
   max-width: 80%;
   margin-top: 3rem;
+  margin-bottom: 0;
 }
 
 .form-input label {
   margin: auto;
   font-weight: bold;
 }
+textarea:focus{
+  outline: 2px solid var(--primary);
+}
+input:focus {
+  outline: 2px solid var(--primary); }
 
+/* input.visited {
+  background-color: red;
+  outline: 2px solid orange;  
+} */
 .item-container {
   margin-bottom: 1rem;
 }
@@ -51,7 +61,7 @@
   color: #fff;
   font-size: 15px;
   font-weight: 400;
-  border-radius: 5px;
+  border-radius: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -69,7 +79,7 @@
   margin-bottom: 1rem;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 1rem;
   background-color: var(--light-grey);
   color: #eee;
   border: 2px solid var(--light-grey);
@@ -81,9 +91,9 @@
   width: 50%;
   height: 40px;
   color: #fff;
-  background-color: #45a049;
+  background-color: var(--secondary);
   font-size: 20px;
-  border-radius: 4px;
+  border-radius: 1rem;
   margin: auto;
   margin-top: 2rem;
   margin-bottom: 5rem;
@@ -106,11 +116,11 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: var(--secondary);
-  border-bottom: 1px solid var(--light-grey);
 }
 
+
 #add-item-btn {
-  margin-top: 3rem;
+  margin-top: 1rem;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -120,18 +130,17 @@
   background-color: var(--light-grey);
 }
 
-.add-item {
-  max-width: 60vw;
-}
+
 
 /* Styling for Add Item Button */
 .add-item {
+  max-width: 60vw;
   width: 100%;
   height: 50px;
   color: #fff;
   background-color: var(--primary);
   font-size: 20px;
-  border-radius: 4px;
+  border-radius: 1rem;
   margin-bottom: 40px;
   margin-top: 1rem;
   cursor: pointer;
@@ -170,3 +179,4 @@
   margin: 1rem;
   border-radius: 10px;
 }
+

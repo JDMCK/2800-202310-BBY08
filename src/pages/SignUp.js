@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
+import { logo } from "../img";
 import Navbar from "../components/Navbar";
 
 function SignUp() {
@@ -43,7 +44,8 @@ function SignUp() {
 
     return (
         <>
-            <Navbar title='BarterBetter' />
+            <Navbar 
+            title={<img src={logo} alt='BarterBetter' className='nav-logo'/>} />
             <div className='user-form'>
                 <h1>Signup</h1>
                 <form onSubmit={event => event.preventDefault()}>

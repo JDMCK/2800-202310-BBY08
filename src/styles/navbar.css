@@ -21,6 +21,11 @@ nav img {
   filter: var(--filter);
 }
 
+.nav-logo{
+  height: 1.8rem;
+  width: auto;
+}
+
 nav h1 {
   grid-column: 2;
   display: flex;
