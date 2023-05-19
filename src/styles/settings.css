@@ -27,7 +27,7 @@ button.settings-input:disabled {
 }
 
 #root {
-  height: 100vh;
+  height: 100dvh;
 }
 
 .settings-save-button {
