@@ -30,7 +30,7 @@
   border: none;
   background-color: #F8333C;
   color: white;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 .item button:disabled {
@@ -66,5 +66,5 @@
 
 .item-buttons #initiate-trade-button {
   background-color: var(--primary);
-  color: black;
+  color: white;
 }
