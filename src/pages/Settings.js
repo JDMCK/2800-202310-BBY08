@@ -69,39 +69,41 @@ const Settings = () => {
   return (
     <>
       <Navbar title='Settings' backArrow={true} />
-      <div className='settings-item'>
-        <h3>Email:</h3>
-        <p>{userDoc && userDoc.email}</p>
+      <div className='settings-container'>
+        <div className='settings-item'>
+          <h3>Email:</h3>
+          <p>{userDoc && userDoc.email}</p>
+        </div>
+        <div className='settings-item'>
+          <h3>Trading Distance:</h3>
+          <p>{range && range + 'km'}</p>
+          <datalist id='range-values'>
+            <option value='5' label='5km'></option>
+            <option value='10' label='10km'></option>
+            <option value='15' label='15km'></option>
+            <option value='25' label='25km'></option>
+            <option value='50' label='50km+'></option>
+          </datalist>
+          <input className='settings-input' id='range-input' type='range' min='5' max='50'
+            list='range-values' value={range} onChange={event => {
+              setRange(event.target.value);
+            }}>
+          </input>
+        </div>
+        <div className='settings-item'>
+          <h3>Change Profile Picture</h3>
+          <input className='settings-input' id='change-profile-picture-input' type='file' accept='image/*' />
+        </div>
+        <div className='settings-item' onClick={handleResetPassword}>
+          <h3>Reset Password</h3>
+        </div>
+        <div className='settings-item' onClick={handleLogout}>
+          <h3>Logout</h3>
+        </div>
+        <div className='settings-save-button'>
+          <button id='settings-save' className='settings-input' onClick={handleSave}>Save</button>
+        </div>
       </div>
-      <div className='settings-item'>
-        <h3>Trading Distance:</h3>
-        <p>{range && range + 'km'}</p>
-        <datalist id='range-values'>
-          <option value='5' label='5km'></option>
-          <option value='10' label='10km'></option>
-          <option value='15' label='15km'></option>
-          <option value='25' label='25km'></option>
-          <option value='50' label='50km+'></option>
-        </datalist>
-        <input className='settings-input' id='range-input' type='range' min='5' max='50'
-          list='range-values' value={range} onChange={event => {
-            setRange(event.target.value);
-          }}>
-        </input>
-      </div>
-      <div className='settings-item'>
-        <h3>Change Profile Picture</h3>
-        <input className='settings-input' id='change-profile-picture-input' type='file' accept='image/*' />
-      </div>
-      <div className='settings-item' onClick={handleResetPassword}>
-        <h3>Reset Password</h3>
-      </div>
-      <div className='settings-item' onClick={handleLogout}>
-        <h3>Logout</h3>
-      </div>
-      <button id='settings-save' className='settings-input' onClick={handleSave}>
-        Save
-      </button>
     </>
   );
 }

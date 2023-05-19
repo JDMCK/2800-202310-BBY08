@@ -1,35 +1,47 @@
 import { useNavigate } from "react-router-dom";
 import { Navbar, Footer, MarketplaceCard } from "../components";
-import { chatIcon, searchIcon } from "../img";
-import useConditionalFetch from "../hooks/useConditionalFetch";
+import { chatIcon, searchIcon, logo } from "../img";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { firestore } from "../config/firebase";
 
 const Home = () => {
 
-  const [items] = useConditionalFetch('allItems', 'col', 'items');
+  const [items, setItems] = useState();
+
+  useEffect(() => {
+    const getItemDocs = async () => {
+      const itemsColRef = collection(firestore, 'items');
+      const itemDocs = await getDocs(itemsColRef);
+      setItems(itemDocs);
+    }
+    getItemDocs();
+  }, [])
+
   const navigate = useNavigate();
 
   return (
     <>
-      <Navbar
-        title="BarterBetter"
-        navButtons={[
-          {
-            icon: searchIcon,
-            onclick: () => {
-              navigate("/");
-            },
-          },
-          {
-            icon: chatIcon,
-            onclick: () => {
-              navigate("/conversations");
-            },
-          },
-        ]}
-      />
       <div className='marketplace-feed'>
-        {items && JSON.parse(items).map((item, i) => (
-          <MarketplaceCard key={i} item={item} />
+        <Navbar
+        title={<img src={logo} alt='BarterBetter' className='nav-logo'/>}
+          navButtons={[
+            {
+              icon: searchIcon,
+              onclick: () => {
+                navigate("/");
+              },
+            },
+            {
+              icon: chatIcon,
+              onclick: () => {
+                navigate("/conversations");
+              },
+            },
+          ]}
+        />
+        {items && items.docs.map((itemDoc, i) => (
+          <MarketplaceCard key={i} itemDoc={itemDoc} />
         ))}
       </div>
       <Footer />

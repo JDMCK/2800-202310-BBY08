@@ -14,3 +14,5 @@ export { default as trading } from './trading.css';
 export { default as conversations } from './conversations.css';
 export { default as loading } from './loading.css';
 export { default as inventoryModal } from './inventoryModal.css';
+export { default as trades } from './trades.css';
+export { default as og } from './og.css';

@@ -1,0 +1,68 @@
+/* Styling for tabs */
+
+.trade-tabs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.trade-tabs button {
+  width: 45%;
+  margin: 0;
+  padding: 0.3rem;
+  border: none;
+  border-radius: 5rem;
+  margin-top: 0.75rem;
+  transition: all 0.2s linear;
+}
+
+.selected {
+  color: black;
+  background-color: var(--primary);
+  font-size: 18px;
+}
+
+.not-selected {
+  background-color: white;
+  font-size: 18px;
+}
+
+/* Styling for trading symbol */
+.trade-middle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.trade-middle-container img {
+  rotate: 90deg;
+}
+
+#trading-symbol {
+  max-width: 10vw;
+  margin: auto;
+}
+
+/* Styling for selected inventory */
+.selected-inventory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border-radius: 0.65rem;
+  border: 1px solid var(--light-grey);
+  overflow: auto;
+}
+
+/* Styling for myTradesBG */
+.trades-content {
+  background-color: var(--secondary);
+  padding-bottom: 5rem;
+  min-height: 80vh;
+}
+
+.trade-card {
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  background-color: white;
+  margin: 0.75rem;
+}

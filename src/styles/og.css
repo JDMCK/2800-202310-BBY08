@@ -1,0 +1,47 @@
+/* Styling for the OG page */
+.og-page {
+  background-color: var(--secondary);
+  min-height: 100vh;
+}
+
+.og-page h2 {
+  text-align: center;
+}
+
+.og-page p {
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Styling for the buttons */
+.og-change-btns {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.change-btn {
+  height: 40px;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  font-weight: 500;
+}
+
+#original-btn {
+  background-color: #226FA8;
+}
+
+#default-btn {
+  background-color: #a6ffe1;
+}
+
+.go-home-container {
+  display: flex;
+  justify-content: center;
+}

@@ -13,6 +13,6 @@
 }
 
 .inventory-item-selected {
-  outline: 5px solid gold;
-  outline-offset: -4px;
+  outline: 6px solid var(--primary);
+  outline-offset: -5px;
 }

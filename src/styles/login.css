@@ -33,6 +33,7 @@
 
 
 .user-form {
+  background-color: white;
   text-align: center;
   border-radius: 5px;
   padding: 20px;
@@ -75,5 +76,5 @@
 }
 
 .login-error {
-  color: #f1356d;
+  color: #F8333C;
 }

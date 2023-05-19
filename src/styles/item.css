@@ -1,8 +1,10 @@
 .item img {
   width: 100%;
+  max-width: 30rem;
   object-fit: cover;
   max-height: 25rem;
-  max-width: 30rem;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .item-img {
@@ -10,20 +12,59 @@
   justify-content: center;
 }
 
-.item button {
-  position: absolute;
+
+.item-buttons {
+  position: relative;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 7rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.item-buttons button {
   width: 50%;
+  max-width: 20rem;
   height: 3rem;
   border: none;
-  background-color: rgb(255, 68, 68);
+  background-color: #F8333C;
   color: white;
   border-radius: 10px;
 }
 
 .item button:disabled {
   background-color: var(--light-grey);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: white;
+  max-width: 30rem;
+  margin: 0.75rem;
+  margin-bottom: 6rem;
+  padding: 0.5rem;
+  border: 5px white solid;
+  border-radius: 10px;
+}
+
+
+.item-container-page {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  /* max-width: 600px; */
+  background-color: var(--secondary);
+  height: 100vh;
+  margin: auto;
+  overflow: scroll;
+}
+
+.item-buttons #initiate-trade-button {
+  background-color: var(--primary);
+  color: black;
 }

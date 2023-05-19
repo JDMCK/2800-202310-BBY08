@@ -1,7 +1,6 @@
 .items-card {
   padding: 0.5rem;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 0.75rem;
   border-radius: 0.75rem;
   background-color: white;
 }
@@ -27,7 +26,7 @@
 
 .trading-middle {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 1rem;
   margin-top: 1.5rem;
@@ -52,6 +51,8 @@
   height: 3rem;
   filter: invert();
   transform: rotate(90deg);
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 #trading-down {
@@ -69,9 +70,12 @@
 .trading-footer-buttons {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   position: absolute;
-  bottom: 2rem;
+  bottom: 0;
   width: 100%;
+  background-color: white;
+  height: 6rem;
 }
 
 .trading-footer-buttons button {
@@ -81,12 +85,14 @@
   height: 2.5rem;
 }
 
-#trading-cancel {
-  background-color: white;
+#trading-delete {
+  background-color: rgb(255, 68, 68);
+  color: white;
 }
 
 #trading-confirm {
-  background-color: var(--primary);
+  background-color: var(--secondary);
+  color: white;
 }
 
 .background {

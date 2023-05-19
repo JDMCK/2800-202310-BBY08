@@ -1,8 +1,8 @@
-.background {
-  /* position: fixed;
+.chat-background {
+  background-color: white;
+  position: absolute;
   height: 100%;
   width: 100%;
-  background-image: linear-gradient(white, var(--primary)); */
 }
 
 .messages {

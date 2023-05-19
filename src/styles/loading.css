@@ -8,8 +8,8 @@
 .spinner {
   animation: dual-spinner infinite 1.5s;
   border: 5px white solid;
-  border-top: 5px var(--primary) solid;
-  border-bottom: 5px var(--primary) solid;
+  border-top: 5px var(--secondary) solid;
+  border-bottom: 5px var(--secondary) solid;
   border-radius: 50%;
   width: 80px;
   height: 80px;

@@ -1,73 +1,184 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
+import { addDoc, and, collection, deleteDoc, doc, getDoc, getDocs, or, query, setDoc, where } from 'firebase/firestore';
 import { firestore } from '../config/firebase';
 import { placeholderImage } from '../img';
 import { Navbar, InventoryItem, EditTradeModal } from '../components';
-import { tradesIcon } from '../img';
-import { useEffect, useState } from 'react';
+import { tradesIcon, chatIcon } from '../img';
+import { useEffect, useRef, useState } from 'react';
 
 const Trading = () => {
+
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  const myName = location.state.myName;
+  const theirName = location.state.theirName;
+  const tradeId = location.state.tradeId;
+  const tradeData = JSON.parse(location.state.tradeData);
+  const initialOffer = location.state.initialOffer;
+
+  const receiverSelectedIds = tradeData.receiver_selected.map(item => item._key.path.segments.at(-1));
+  const senderSelectedIds = tradeData.sender_selected.map(item => item._key.path.segments.at(-1));
+
+  const receiverId = tradeData.receiver_ref._key.path.segments.at(-1);
+  const senderId = tradeData.sender_ref._key.path.segments.at(-1);
+  const receiverRef = doc(firestore, 'users', receiverId);
+  const senderRef = doc(firestore, 'users', senderId);
+
+  const type = location.state.type;
 
   const [receiverItems, setReceiverItems] = useState();
   const [senderItems, setSenderItems] = useState();
 
+  const initialReceiverItems = useRef();
+  const initialSenderItems = useRef();
+
   useEffect(() => {
-    const getItems = async (ids, setter) => {
+    const getItems = async (ids, setter, ref) => {
+      if (ids.length === 0) {
+        setter([]);
+        return;
+      };
       const itemRefs = ids.map(id => doc(firestore, 'items', id));
       const itemPromises = itemRefs.map(ref => getDoc(ref));
       const itemDocs = await Promise.all(itemPromises);
+      if (!initialOffer) ref.current = itemDocs;
       setter(itemDocs);
     }
-    const receiverItemIds = ['YTcryS0p2XEVbav5qPxR'];
-    const senderItemIds = ['7cHQr2HPsW0WsadHQ0U4'];
-    getItems(receiverItemIds, setReceiverItems);
-    getItems(senderItemIds, setSenderItems);
+    getItems(receiverSelectedIds, setReceiverItems, initialReceiverItems);
+    getItems(senderSelectedIds, setSenderItems, initialSenderItems);
   }, []);
 
   // Button handlers
   const handleEditOffer = () => {
-    document.getElementById('sender-modal').showModal();
+    document.getElementById('offer-modal').showModal();
   };
 
   const handleEditRequest = () => {
-    document.getElementById('receiver-modal').showModal();
+    document.getElementById('request-modal').showModal();
+  }
+
+  const determineUserItems = (itemType) => {
+    if (itemType === 'requested') {
+      if (type === 'sent' && receiverItems) {
+        return receiverItems.map((doc, i) =>
+          <InventoryItem key={i}
+            thumbnail={doc.data().picture_URL ? doc.data().picture_URL : placeholderImage}
+          />)
+      }
+      else if (senderItems) {
+        return senderItems.map((doc, i) =>
+          <InventoryItem key={i}
+            thumbnail={doc.data().picture_URL ? doc.data().picture_URL : placeholderImage}
+          />)
+      }
+    } else {
+      if (type === 'sent' && senderItems) {
+        return senderItems.map((doc, i) =>
+          <InventoryItem key={i}
+            thumbnail={doc.data().picture_URL ? doc.data().picture_URL : placeholderImage}
+          />)
+      }
+      else if (receiverItems) {
+        return receiverItems.map((doc, i) =>
+          <InventoryItem key={i}
+            thumbnail={doc.data().picture_URL ? doc.data().picture_URL : placeholderImage}
+          />)
+      }
+    }
+  }
+
+  const handleDeleteTrade = async () => {
+    const tradeRef = doc(firestore, 'trades', tradeId);
+    await deleteDoc(tradeRef);
+    navigate('/trades');
+  }
+
+  const isTradeChanged = () => {
+    return !(JSON.stringify(initialReceiverItems.current) === JSON.stringify(receiverItems) &&
+      JSON.stringify(initialSenderItems.current) === JSON.stringify(senderItems))
+  }
+
+  const handleConfirmTrade = async () => {
+
+    const tradeRef = initialOffer ? '' : doc(firestore, 'trades', tradeId);
+
+    if (isTradeChanged()) {
+      const newTrade = {
+        receiver_ref: senderRef,
+        sender_ref: receiverRef,
+        receiver_selected: senderItems.map(item => item.ref),
+        sender_selected: receiverItems.map(item => item.ref),
+        trade_status: 'incomplete'
+      };
+      if (initialOffer) {
+        const tradeCollection = collection(firestore, 'trades');
+        await addDoc(tradeCollection, newTrade);
+      } else {
+        await setDoc(tradeRef, newTrade);
+      }
+    } else {
+      await setDoc(tradeRef, { trade_status: 'complete' }, { merge: true })
+    }
+    navigate('/trades');
+  }
+
+  const handleChat = async () => {
+    const conversationsRef = collection(firestore, 'conversations');
+    const conversationQuery = query(conversationsRef, or(
+      and(where('user_1', '==', receiverRef), where('user_2', '==', senderRef)),
+      and(where('user_1', '==', senderRef), where('user_2', '==', receiverRef))
+    ))
+    const conversationDoc = await getDocs(conversationQuery);
+    if (conversationDoc.size !== 0) {
+      navigate('/chat', { state: { conversationId: conversationDoc.docs[0].id, toName: theirName, fromName: myName } })
+    } else {
+      if (type === 'sent') {
+        const conversationRef = await addDoc(conversationsRef, { user_1: senderRef, user_2: receiverRef });
+        navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+      } else {
+        const conversationRef = await addDoc(conversationsRef, { user_1: receiverRef, user_2: senderRef });
+        navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+      }
+    }
   }
 
   return (
     <div className='background'>
-      <EditTradeModal id='sender-modal' isSelectedById={senderItems}
-        userRef username={'Jesse McKenzie'} onEdit={setSenderItems} />
-      <EditTradeModal id='receiver-modal' isSelectedById={receiverItems}
-        userRef username={'Jane Doe'} onEdit={setReceiverItems} />
-      <Navbar title={'Trading'} backArrow={true} />
+      {senderItems && <EditTradeModal id='request-modal' isSelectedByRef={senderItems}
+        userId={senderId} username={theirName} onEdit={setSenderItems} />}
+      {receiverItems && <EditTradeModal id='offer-modal' isSelectedByRef={receiverItems}
+        userId={receiverId} username={myName} onEdit={setReceiverItems} />}
+      <Navbar title={'Trading'} backArrow={true} navButtons={!initialOffer &&
+        [{
+          icon: chatIcon,
+          onclick: handleChat
+        }]
+      } />
       <div className='items-card' id='requested-cards'>
         <div className='trading-inventory' id='requested-inventory'>
-          {receiverItems && receiverItems.map((doc, i) =>
-            <InventoryItem key={i}
-              thumbnail={doc.data().picture_URL ? doc.data().picture_URL : placeholderImage}
-            />)}
+          {determineUserItems('requested')}
         </div>
         <h1>Requested Items</h1>
       </div>
 
       <div className='trading-middle'>
-        <button id='offer-button' onClick={handleEditOffer}>Edit Offer</button>
+        {type === 'incoming' && <button id='offer-button' onClick={handleEditOffer}>Edit Offer</button>}
         <img id='trading-arrows' src={tradesIcon} alt='' />
-        <button id='request-button' onClick={handleEditRequest}>Edit Request</button>
+        {type === 'incoming' && <button id='request-button' onClick={handleEditRequest}>Edit Request</button>}
       </div>
 
       <div className='items-card' id='offered-cards'>
         <h1>Offered Items</h1>
         <div className='trading-inventory' id='offered-inventory'>
-          {senderItems && senderItems.map((doc, i) =>
-            <InventoryItem key={i}
-              thumbnail={doc.data().picture_URL ? doc.data().picture_URL : placeholderImage}
-            />)}
+          {determineUserItems('offered')}
         </div>
       </div>
       <div className='trading-footer-buttons'>
-        <button id='trading-cancel'>Cancel</button>
-        <button id='trading-confirm'>Confirm</button>
+        <button id='trading-delete' onClick={handleDeleteTrade}>Delete Trade</button>
+        {type === 'incoming' && <button id='trading-confirm'
+          onClick={handleConfirmTrade}>{isTradeChanged() ?
+            (initialOffer ? 'Send Offer' : 'Update Trade') : 'Complete Trade'}</button>}
       </div>
     </div>
   )
