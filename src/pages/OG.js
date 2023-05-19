@@ -6,7 +6,7 @@ const OG = () => {
   const changeToOGColours = () => {
     document.documentElement.style.setProperty('--primary', '#226FA8');
     document.documentElement.style.setProperty('--secondary', '#b9ddff');
-    document.documentElement.style.setProperty('--filter', 'invert()');
+    document.documentElement.style.setProperty('--filter', 'brightness(0) invert(1)');
     document.documentElement.style.setProperty('--nav-text', 'white');
     document.documentElement.style.setProperty('--nav-bg', '#226FA8');
 
