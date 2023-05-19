@@ -19,7 +19,7 @@ const EditTradeModal = ({ id, isSelectedByRef, userId, username, onEdit }) => {
     }
     getItems();
     setSelectedItems(isSelectedByRef);
-
+    // eslint-disable-next-line
   }, [])
 
   const handleSelectItem = (itemDoc) => {
