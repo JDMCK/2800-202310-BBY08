@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from '../components';
+import { logo } from "../img";
 
 function LogIn() {
 
@@ -24,7 +25,8 @@ function LogIn() {
 
     return (
         <>
-            <Navbar title='BarterBetter' />
+            <Navbar 
+            title={<img src={logo} alt='BarterBetter' className='nav-logo'/>} />
             <div className='user-form'>
                 <h1>Log In</h1>
                 <form onSubmit={event => event.preventDefault()}>
