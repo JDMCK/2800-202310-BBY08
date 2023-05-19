@@ -48,9 +48,7 @@ const ConversationCard = ({ conversationRef }) => {
 
   const getFormattedDate = (seconds) => {
     const date = new Date(seconds * 1000);
-    const timeZone = date.getTimezoneOffset();
-    const adjustedDate = new Date((timeZone * 60 + seconds) * 1000);
-    return adjustedDate.toLocaleDateString([], { hour: "2-digit", minute: "2-digit" });
+    return date.toLocaleDateString([], { hour: "2-digit", minute: "2-digit" });
   }
 
   return (
