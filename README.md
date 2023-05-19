@@ -55,7 +55,8 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
 
 ## Features for Future Implementation:
 
-- Search functionality with filters by category and location
+- Search functionality with filters by category and location.
+- Ability to view previous trade histories.
 - Rating system to leave feedback about the trading experience.
 - Community listings, ability to trade with a specific group of people pertaining to common interests.
 
@@ -86,11 +87,13 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
       /EditTradeModal.js
       /Footer.js
       /index.js
-      /Inventory.js
+      /InventoryItem.js
       /MarketplaceCard.js
       /MessageInput.js
       /Navbar.js
       /PreviewCard.js
+      /Tab.js
+      /TradeCard.js
 ────────────────────────────────
 ├── config                 # Configuration files used throughout the application.
       /firebase.js
@@ -132,7 +135,9 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
       /Item.js
       /Loading.js
       /Login.js
+      /OG.js
       /Preview.js
+      /PrivateWrapper.js
       /Profile.js
       /ResetPassword.js
       /Settings.js
@@ -155,8 +160,10 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
       /marketplace.css
       /messageInput.css
       /navbar.css
+      /og.css
       /profile.css
       /settings.css
+      /trades.js
       /trading.css
 ────────────────────────────────
 ├── App.js                 # Central component defining the main structure and behavior of the application.
