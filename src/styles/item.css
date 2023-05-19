@@ -12,6 +12,7 @@
   justify-content: center;
 }
 
+
 .item-buttons {
   position: relative;
   bottom: 0;
@@ -24,9 +25,10 @@
 
 .item-buttons button {
   width: 50%;
+  max-width: 20rem;
   height: 3rem;
   border: none;
-  background-color: rgb(255, 68, 68);
+  background-color: #F8333C;
   color: white;
   border-radius: 10px;
 }
@@ -36,6 +38,10 @@
 }
 
 .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
   background-color: white;
   max-width: 30rem;
   margin: 0.75rem;
@@ -47,8 +53,13 @@
 
 
 .item-container-page {
-  max-width: 600px;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  /* max-width: 600px; */
   background-color: var(--secondary);
+  height: 100vh;
   margin: auto;
   overflow: scroll;
 }
