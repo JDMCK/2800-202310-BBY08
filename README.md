@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://barterbetter.ca">
-    <img src="src/img/BBLogo.png" alt="barter-better-logo" style="margin-top: 2rem;">
+    <img src="src/img/logo.png" alt="barter-better-logo" style="margin-top: 2rem;">
   </a>
 </p>
 
@@ -106,7 +106,6 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
 ────────────────────────────────
 ├── img                    # Stores image assets used within the application.
       /back_arrow.png
-      /BBLogo.png
       /chat.png
       /exchanging_active.png
       /gear.png
@@ -114,6 +113,7 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
       /home.png
       /index.js
       /logo_large.png
+      /logo.png
       /more_active.png
       /people_active.png
       /people.png
@@ -163,7 +163,7 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
       /og.css
       /profile.css
       /settings.css
-      /trades.js
+      /trades.css
       /trading.css
 ────────────────────────────────
 ├── App.js                 # Central component defining the main structure and behavior of the application.
