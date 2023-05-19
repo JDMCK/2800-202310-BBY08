@@ -15,3 +15,4 @@ export { default as gear } from './gear.png';
 export { default as placeholderImage } from './placeholder_image.png';
 export { default as placeholderProfilePicture } from './placeholder_profile_picture.png';
 export { default as upArrowIcon } from './up_arrow.png';
+export { default as logo} from './logo.png';

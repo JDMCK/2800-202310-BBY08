@@ -2,13 +2,23 @@
   margin: auto;
   max-width: 80%;
   margin-top: 3rem;
+  margin-bottom: 0;
 }
 
 .form-input label {
   margin: auto;
   font-weight: bold;
 }
+textarea:focus{
+  outline: 2px solid var(--primary);
+}
+input:focus {
+  outline: 2px solid var(--primary); }
 
+/* input.visited {
+  background-color: red;
+  outline: 2px solid orange;  
+} */
 .item-container {
   margin-bottom: 1rem;
 }
@@ -109,6 +119,7 @@
   border-bottom: 1px solid var(--light-grey);
 }
 
+
 #add-item-btn {
   margin-top: 3rem;
   position: absolute;
@@ -120,12 +131,11 @@
   background-color: var(--light-grey);
 }
 
-.add-item {
-  max-width: 60vw;
-}
+
 
 /* Styling for Add Item Button */
 .add-item {
+  max-width: 60vw;
   width: 100%;
   height: 50px;
   color: #fff;
@@ -169,3 +179,4 @@
   margin: 1rem;
   border-radius: 10px;
 }
+
