@@ -1,5 +1,6 @@
 .marketplace-card {
   background-color: white;
+  max-width: 30rem;
   margin: 0.75rem;
   margin-bottom: 1rem;
   padding: 0.5rem;
@@ -10,24 +11,66 @@
 }
 
 .marketplace-card img {
+  margin: auto;
   width: 100%;
   max-width: 30rem;
-  border: 1px var(--light-grey) solid;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  /* border: 0.5px var(--light-grey) solid; */
+  border-radius: 5px;
 }
 
 .card-text {
   padding-left: 0.25rem;
 }
 
-.timestamp {
-  text-align: end;
-  font-size: small;
-}
-
 .marketplace-feed {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
   background-color: var(--secondary);
   padding-bottom: 5rem;
-  padding-top: 1rem;
+}
+
+
+#posting {
+  grid-area: posting;
+  font-size: x-small;
+  margin-bottom: 0.2rem;
+}
+
+#prof {
+  display: flex;
+  align-items: center;
+  grid-area: prof;
+}
+
+.timestamp {
+  grid-area: timestamp;
+  font-size: small;
+  justify-self: end;
+  align-self: end;
+  text-align: end;
+}
+
+.bottom-row img {
+  width: 2rem;
+  margin-right: 0.25rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.bottom-row {
+
+  padding-top: 0.75rem;
+  font-size: small;
+  justify-content: space-between;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-areas:
+    "posting posting"
+    "prof timestamp";
 }

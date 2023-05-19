@@ -1,7 +1,6 @@
 .items-card {
   padding: 0.5rem;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 0.75rem;
   border-radius: 0.75rem;
   background-color: white;
 }

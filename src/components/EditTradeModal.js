@@ -18,9 +18,8 @@ const EditTradeModal = ({ id, isSelectedByRef, userId, username, onEdit }) => {
       setItemDocs(itemDocs.docs);
     }
     getItems();
-    if (isSelectedByRef.length > 0) {
-      setSelectedItems(isSelectedByRef);
-    }
+    setSelectedItems(isSelectedByRef);
+
   }, [])
 
   const handleSelectItem = (itemDoc) => {

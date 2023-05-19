@@ -66,7 +66,7 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
   const [theirSelectedItems] = useCollectionDataOnce(query(collection(firestore, 'items'), where('__name__', 'in', theirSelected)));
 
   const goCurrentTrade = () => {
-    navigate('/trading', { state: { tradeData: JSON.stringify(tradeData), type: type, tradeID: tradeID, theirName: theirName, myName: myName } });
+    navigate('/trading', { state: { tradeData: JSON.stringify(tradeData), type: type, tradeId: tradeID, theirName: theirName, myName: myName, initialOffer: false } });
   }
 
   return (

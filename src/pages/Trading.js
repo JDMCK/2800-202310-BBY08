@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { addDoc, and, collection, deleteDoc, doc, getDoc, getDocs, or, query, setDoc, where } from 'firebase/firestore';
 import { firestore } from '../config/firebase';
 import { placeholderImage } from '../img';
 import { Navbar, InventoryItem, EditTradeModal } from '../components';
-import { tradesIcon } from '../img';
+import { tradesIcon, chatIcon } from '../img';
 import { useEffect, useRef, useState } from 'react';
 
 const Trading = () => {
@@ -13,8 +13,9 @@ const Trading = () => {
   const location = useLocation();
   const myName = location.state.myName;
   const theirName = location.state.theirName;
-  const tradeId = location.state.tradeID;
+  const tradeId = location.state.tradeId;
   const tradeData = JSON.parse(location.state.tradeData);
+  const initialOffer = location.state.initialOffer;
 
   const receiverSelectedIds = tradeData.receiver_selected.map(item => item._key.path.segments.at(-1));
   const senderSelectedIds = tradeData.sender_selected.map(item => item._key.path.segments.at(-1));
@@ -34,15 +35,19 @@ const Trading = () => {
 
   useEffect(() => {
     const getItems = async (ids, setter, ref) => {
+      if (ids.length === 0) {
+        setter([]);
+        return;
+      };
       const itemRefs = ids.map(id => doc(firestore, 'items', id));
       const itemPromises = itemRefs.map(ref => getDoc(ref));
       const itemDocs = await Promise.all(itemPromises);
-      ref.current = itemDocs;
+      if (!initialOffer) ref.current = itemDocs;
       setter(itemDocs);
     }
     getItems(receiverSelectedIds, setReceiverItems, initialReceiverItems);
     getItems(senderSelectedIds, setSenderItems, initialSenderItems);
-  }, []);
+  }, [initialOffer, receiverSelectedIds, senderSelectedIds]);
 
   // Button handlers
   const handleEditOffer = () => {
@@ -96,7 +101,7 @@ const Trading = () => {
 
   const handleConfirmTrade = async () => {
 
-    const tradeRef = doc(firestore, 'trades', tradeId);
+    const tradeRef = initialOffer ? '' : doc(firestore, 'trades', tradeId);
 
     if (isTradeChanged()) {
       const newTrade = {
@@ -106,11 +111,36 @@ const Trading = () => {
         sender_selected: receiverItems.map(item => item.ref),
         trade_status: 'incomplete'
       };
-      await setDoc(tradeRef, newTrade);
+      if (initialOffer) {
+        const tradeCollection = collection(firestore, 'trades');
+        await addDoc(tradeCollection, newTrade);
+      } else {
+        await setDoc(tradeRef, newTrade);
+      }
     } else {
       await setDoc(tradeRef, { trade_status: 'complete' }, { merge: true })
     }
     navigate('/trades');
+  }
+
+  const handleChat = async () => {
+    const conversationsRef = collection(firestore, 'conversations');
+    const conversationQuery = query(conversationsRef, or(
+      and(where('user_1', '==', receiverRef), where('user_2', '==', senderRef)),
+      and(where('user_1', '==', senderRef), where('user_2', '==', receiverRef))
+    ))
+    const conversationDoc = await getDocs(conversationQuery);
+    if (conversationDoc.size !== 0) {
+      navigate('/chat', { state: { conversationId: conversationDoc.docs[0].id, toName: theirName, fromName: myName } })
+    } else {
+      if (type === 'sent') {
+        const conversationRef = await addDoc(conversationsRef, { user_1: senderRef, user_2: receiverRef });
+        navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+      } else {
+        const conversationRef = await addDoc(conversationsRef, { user_1: receiverRef, user_2: senderRef });
+        navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+      }
+    }
   }
 
   return (
@@ -119,7 +149,12 @@ const Trading = () => {
         userId={senderId} username={theirName} onEdit={setSenderItems} />}
       {receiverItems && <EditTradeModal id='offer-modal' isSelectedByRef={receiverItems}
         userId={receiverId} username={myName} onEdit={setReceiverItems} />}
-      <Navbar title={'Trading'} backArrow={true} />
+      <Navbar title={'Trading'} backArrow={true} navButtons={!initialOffer &&
+        [{
+          icon: chatIcon,
+          onclick: handleChat
+        }]
+      } />
       <div className='items-card' id='requested-cards'>
         <div className='trading-inventory' id='requested-inventory'>
           {determineUserItems('requested')}
@@ -141,7 +176,9 @@ const Trading = () => {
       </div>
       <div className='trading-footer-buttons'>
         <button id='trading-delete' onClick={handleDeleteTrade}>Delete Trade</button>
-        <button id='trading-confirm' onClick={handleConfirmTrade}>{isTradeChanged() ? 'Update Trade' : 'Complete Trade'}</button>
+        {type === 'incoming' && <button id='trading-confirm'
+          onClick={handleConfirmTrade}>{isTradeChanged() ?
+            (initialOffer ? 'Send Offer' : 'Update Trade') : 'Complete Trade'}</button>}
       </div>
     </div>
   )

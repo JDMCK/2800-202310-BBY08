@@ -1,9 +1,27 @@
+#root {
+  background-color: var(--secondary);
+}
+
+.profile-container {
+  background-color: var(--secondary);
+  border-radius: 20px;
+}
+
+.profile-card {
+  background-color: white;
+  margin: 0.75rem;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
 .profile {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px var(--light-grey) solid;
   padding-bottom: 2rem;
 }
 
@@ -18,7 +36,11 @@
 }
 
 .profile-inventory {
+  background-color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
+  border-radius: 0.65rem;
+  border: 1px solid var(--light-grey);
+  overflow: auto;
 }
