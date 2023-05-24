@@ -5,7 +5,7 @@ const Groups = () => {
   return (
     <>
       <Navbar title="Groups" />
-      <div id="groupsContainer">
+      <div id="groups-container">
         <img src={construction} alt="Under Construction" />
         <h3>Under Construction</h3>
       </div>

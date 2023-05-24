@@ -81,7 +81,6 @@ const MarketplaceCard = ({ itemDoc }) => {
       <div className='card-text'>
         <h3>{item.item_name}</h3>
         <p>{item.description}</p>
-        <b>{item.location}</b>
       </div>
       <div className='bottom-row'>
         <p id='posting'>Posted by:</p>

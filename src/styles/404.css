@@ -1,27 +1,29 @@
-#errorFeed{
+#error-feed{
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     background-color: var(--secondary);
     padding-bottom: 5rem;
 }
 
-#errorContainer{
+#error-container{
     width: auto;
     background-color: white;
     margin: 0.75rem;
     padding: 2rem;
-    border-radius: 5px;
+    border-radius: 0.75rem;
     max-width: 400px;
 
 }
 
-#errorContainer img{
+#error-container img {
     display: flex;
     width: 100%;
     max-width: 400px;
 }
 
-#errorContainer a{
+#error-container a {
     color:blue;
 }
+

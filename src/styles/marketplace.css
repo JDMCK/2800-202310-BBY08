@@ -5,7 +5,7 @@
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: 5px white solid;
-  border-radius: 10px;
+  border-radius: 0.75rem;
   /* box-shadow: 0 5px 10px var(--light-grey); */
   color: black;
 }
@@ -14,8 +14,7 @@
   margin: auto;
   width: 100%;
   max-width: 30rem;
-  /* border: 0.5px var(--light-grey) solid; */
-  border-radius: 5px;
+  border-radius: 0.65rem;
 }
 
 .card-text {
