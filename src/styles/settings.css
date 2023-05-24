@@ -11,6 +11,7 @@
 .settings-input::file-selector-button {
   border: none;
   border-radius: 1rem;
+  color: white;
   background-color: var(--primary);
   height: 1.5rem;
 }
