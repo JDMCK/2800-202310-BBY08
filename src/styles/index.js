@@ -16,3 +16,5 @@ export { default as loading } from './loading.css';
 export { default as inventoryModal } from './inventoryModal.css';
 export { default as trades } from './trades.css';
 export { default as og } from './og.css';
+export { default as error } from './404.css';
+export { default as groups } from './groups.css';

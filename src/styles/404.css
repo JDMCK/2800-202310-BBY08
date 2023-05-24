@@ -1,0 +1,27 @@
+#errorFeed{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--secondary);
+    padding-bottom: 5rem;
+}
+
+#errorContainer{
+    width: auto;
+    background-color: white;
+    margin: 0.75rem;
+    padding: 2rem;
+    border-radius: 5px;
+    max-width: 400px;
+
+}
+
+#errorContainer img{
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+}
+
+#errorContainer a{
+    color:blue;
+}
