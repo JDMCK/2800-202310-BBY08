@@ -17,3 +17,4 @@ export { default as placeholderProfilePicture } from './placeholder_profile_pict
 export { default as upArrowIcon } from './up_arrow.png';
 export { default as logo } from './logo.png';
 export { default as history } from './history.png';
+export { default as edit } from './draw.png';

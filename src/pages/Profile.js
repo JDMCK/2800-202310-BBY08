@@ -4,7 +4,7 @@ import { useCollectionDataOnce, useCollectionOnce, useDocumentDataOnce } from 'r
 import { collection, doc, query, where } from 'firebase/firestore';
 import { auth, firestore } from '../config/firebase';
 import { placeholderImage } from '../img';
-import { gear } from '../img';
+import { edit } from '../img';
 
 const Profile = () => {
 
@@ -30,7 +30,7 @@ const Profile = () => {
       <Navbar title='Profile' navButtons={[
         {
           onclick: handleSettings,
-          icon: gear
+          icon: edit
         }
       ]} />
       <div className='profile-container'>

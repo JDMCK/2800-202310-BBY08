@@ -50,6 +50,7 @@ const Trading = () => {
     }
     getItems(receiverSelectedIds, setReceiverItems, initialReceiverItems);
     getItems(senderSelectedIds, setSenderItems, initialSenderItems);
+
     // eslint-disable-next-line
   }, []);
 
