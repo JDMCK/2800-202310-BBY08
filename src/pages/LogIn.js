@@ -1,9 +1,9 @@
 import { auth } from '../config/firebase.js';
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from '../components';
-import { logo } from "../img";
+import { logo } from '../img';
 
 function LogIn() {
 
@@ -19,14 +19,14 @@ function LogIn() {
             navigate('/');
         } catch (e) {
             setError('Incorrect email/password combination.');
-            console.error("Failed to login.", e)
+            console.error('Failed to login.', e)
         }
     };
 
     return (
         <>
-            <Navbar 
-            title={<img src={logo} alt='BarterBetter' className='nav-logo'/>} />
+            <Navbar
+                title={<img src={logo} alt='BarterBetter' className='nav-logo' />} />
             <div className='user-form'>
                 <h1>Log In</h1>
                 <form onSubmit={event => event.preventDefault()}>

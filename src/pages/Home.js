@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { Navbar, Footer, MarketplaceCard } from "../components";
-import { chatIcon, searchIcon, logo } from "../img";
-import { useEffect, useState } from "react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { firestore } from "../config/firebase";
+import { Link, useNavigate } from 'react-router-dom';
+import { Navbar, Footer, MarketplaceCard } from '../components';
+import { chatIcon, searchIcon, logo } from '../img';
+import { useEffect, useState } from 'react';
+import { collection, getDocs, query, where, query, orderBy } from 'firebase/firestore';
+import { firestore } from '../config/firebase';
 
 const Home = () => {
 
@@ -11,8 +11,9 @@ const Home = () => {
 
   useEffect(() => {
     const getItemDocs = async () => {
-      const itemsColRef = query(collection(firestore, 'items'), orderBy('timeStamp', 'desc'));
-      const itemDocs = await getDocs(itemsColRef);
+      const itemsColRef = collection(firestore, 'items');
+      const itemsQuery = query(itemsColRef, orderBy('timeStamp', 'desc'), where('isTraded', '==', false));
+      const itemDocs = await getDocs(itemsQuery);
       setItems(itemDocs);
     }
     getItemDocs();
@@ -24,18 +25,22 @@ const Home = () => {
     <>
       <div className='marketplace-feed'>
         <Navbar
-        title={<img src={logo} alt='BarterBetter' className='nav-logo'/>}
+          title={
+            <Link to={'/og'}>
+              <img src={logo} alt='BarterBetter' className='nav-logo' />
+            </Link>
+          }
           navButtons={[
             {
               icon: searchIcon,
               onclick: () => {
-                navigate("/");
+                navigate('/');
               },
             },
             {
               icon: chatIcon,
               onclick: () => {
-                navigate("/conversations");
+                navigate('/conversations');
               },
             },
           ]}

@@ -1,7 +1,7 @@
-import { collection, doc, limit, orderBy, query } from "firebase/firestore";
-import { auth, firestore } from "../config/firebase";
-import { useCollectionDataOnce, useDocumentDataOnce } from "react-firebase-hooks/firestore";
-import { useNavigate } from "react-router-dom";
+import { collection, doc, limit, orderBy, query } from 'firebase/firestore';
+import { auth, firestore } from '../config/firebase';
+import { useCollectionDataOnce, useDocumentDataOnce } from 'react-firebase-hooks/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const ConversationCard = ({ conversationRef }) => {
 
@@ -18,8 +18,6 @@ const ConversationCard = ({ conversationRef }) => {
   let from;
   let fromId;
 
-
-  // Recipient (person who is not the current user)
   if (user1Ref.id === auth.currentUser.uid) {
     to = user2;
     toId = user2Ref.id;
@@ -48,9 +46,7 @@ const ConversationCard = ({ conversationRef }) => {
 
   const getFormattedDate = (seconds) => {
     const date = new Date(seconds * 1000);
-    const timeZone = date.getTimezoneOffset();
-    const adjustedDate = new Date((timeZone * 60 + seconds) * 1000);
-    return adjustedDate.toLocaleDateString([], { hour: "2-digit", minute: "2-digit" });
+    return date.toLocaleDateString([], { hour: '2-digit', minute: '2-digit' });
   }
 
   return (

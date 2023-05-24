@@ -1,9 +1,9 @@
-import { Navbar, AddingItem } from "../components";
+import { Navbar, AddingItem } from '../components';
 
 const AddItem = () => {
   return (
     <>
-      <Navbar title="Add-Item" backArrow={true}/>
+      <Navbar title='Add-Item' backArrow={true} />
       <AddingItem />
     </>
   );

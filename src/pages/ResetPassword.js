@@ -1,4 +1,3 @@
-
 import { auth } from '../config/firebase.js';
 import { useState } from 'react';
 import { sendPasswordResetEmail } from 'firebase/auth';

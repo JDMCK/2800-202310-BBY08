@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { addDoc, and, collection, deleteDoc, doc, getDoc, getDocs, or, query, setDoc, where } from 'firebase/firestore';
 import { firestore } from '../config/firebase';
 import { placeholderImage } from '../img';
-import { Navbar, InventoryItem, EditTradeModal } from '../components';
+import { Navbar, InventoryItem, EditTradeModal, Confirmation } from '../components';
 import { tradesIcon, chatIcon } from '../img';
 import { useEffect, useRef, useState } from 'react';
 
@@ -43,13 +43,13 @@ const Trading = () => {
       const itemPromises = itemRefs.map(ref => getDoc(ref));
       const itemDocs = await Promise.all(itemPromises);
       if (!initialOffer) ref.current = itemDocs;
-      setter(itemDocs);
+      setter(itemDocs.filter(itemDoc => tradeData.trade_status === 'complete' || itemDoc.data().isTraded === false));
     }
     getItems(receiverSelectedIds, setReceiverItems, initialReceiverItems);
     getItems(senderSelectedIds, setSenderItems, initialSenderItems);
+    // eslint-disable-next-line
   }, []);
 
-  // Button handlers
   const handleEditOffer = () => {
     document.getElementById('offer-modal').showModal();
   };
@@ -94,6 +94,18 @@ const Trading = () => {
     navigate('/trades');
   }
 
+  const handleRevokeTrade = async () => {
+    const tradeRef = doc(firestore, 'trades', tradeId);
+
+    const confirmedItems = receiverItems.concat(senderItems);
+    await confirmedItems.forEach(async item => await setDoc(item.ref, { isTraded: false }, { merge: true }));
+    await deleteDoc(tradeRef);
+
+    handleChat('Trade Revoked');
+
+    navigate('/trades');
+  }
+
   const isTradeChanged = () => {
     return !(JSON.stringify(initialReceiverItems.current) === JSON.stringify(receiverItems) &&
       JSON.stringify(initialSenderItems.current) === JSON.stringify(senderItems))
@@ -102,6 +114,11 @@ const Trading = () => {
   const handleConfirmTrade = async () => {
 
     const tradeRef = initialOffer ? '' : doc(firestore, 'trades', tradeId);
+
+    if (senderItems.length === 0 && receiverItems.length === 0) {
+      document.getElementById('no-items-modal').showModal();
+      return;
+    }
 
     if (isTradeChanged()) {
       const newTrade = {
@@ -118,12 +135,17 @@ const Trading = () => {
         await setDoc(tradeRef, newTrade);
       }
     } else {
-      await setDoc(tradeRef, { trade_status: 'complete' }, { merge: true })
+      await setDoc(tradeRef, { trade_status: 'complete' }, { merge: true });
+
+      await handleChat('Trade Confirmed');
+
+      const confirmedItems = receiverItems.concat(senderItems);
+      await confirmedItems.forEach(async item => await setDoc(item.ref, { isTraded: true }, { merge: true }));
     }
     navigate('/trades');
   }
 
-  const handleChat = async () => {
+  const handleChat = async (systemMessage) => {
     const conversationsRef = collection(firestore, 'conversations');
     const conversationQuery = query(conversationsRef, or(
       and(where('user_1', '==', receiverRef), where('user_2', '==', senderRef)),
@@ -131,14 +153,29 @@ const Trading = () => {
     ))
     const conversationDoc = await getDocs(conversationQuery);
     if (conversationDoc.size !== 0) {
-      navigate('/chat', { state: { conversationId: conversationDoc.docs[0].id, toName: theirName, fromName: myName } })
+      if (systemMessage) {
+        const messagesRef = collection(firestore, 'conversations', conversationDoc.docs[0].id, 'messages');
+        await addDoc(messagesRef, { created_at: new Date(), message: systemMessage, system_message: true });
+      } else {
+        navigate('/chat', { state: { conversationId: conversationDoc.docs[0].id, toName: theirName, fromName: myName } })
+      }
     } else {
       if (type === 'sent') {
         const conversationRef = await addDoc(conversationsRef, { user_1: senderRef, user_2: receiverRef });
-        navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+        if (systemMessage) {
+          const messagesRef = collection(firestore, 'conversations', conversationRef.id, 'messages');
+          await addDoc(messagesRef, { created_at: new Date(), message: systemMessage, system_message: true });
+        } else {
+          navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+        }
       } else {
         const conversationRef = await addDoc(conversationsRef, { user_1: receiverRef, user_2: senderRef });
-        navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+        if (systemMessage) {
+          const messagesRef = collection(firestore, 'conversations', conversationRef.id, 'messages');
+          await addDoc(messagesRef, { created_at: new Date(), message: systemMessage, system_message: true });
+        } else {
+          navigate('/chat', { state: { conversationId: conversationRef.id, toName: theirName, fromName: myName } })
+        }
       }
     }
   }
@@ -149,10 +186,12 @@ const Trading = () => {
         userId={senderId} username={theirName} onEdit={setSenderItems} />}
       {receiverItems && <EditTradeModal id='offer-modal' isSelectedByRef={receiverItems}
         userId={receiverId} username={myName} onEdit={setReceiverItems} />}
+      <Confirmation onConfirm={() => document.getElementById('no-items-modal').close()}
+        id='no-items-modal' title='No Items Selected' buttonMessage='Back' />
       <Navbar title={'Trading'} backArrow={true} navButtons={!initialOffer &&
         [{
           icon: chatIcon,
-          onclick: handleChat
+          onclick: () => handleChat()
         }]
       } />
       <div className='items-card' id='requested-cards'>
@@ -163,9 +202,11 @@ const Trading = () => {
       </div>
 
       <div className='trading-middle'>
-        {type === 'incoming' && <button id='offer-button' onClick={handleEditOffer}>Edit Offer</button>}
+        {type === 'incoming' && tradeData.trade_status !== 'complete' &&
+          <button id='offer-button' onClick={handleEditOffer}>Edit Offer</button>}
         <img id='trading-arrows' src={tradesIcon} alt='' />
-        {type === 'incoming' && <button id='request-button' onClick={handleEditRequest}>Edit Request</button>}
+        {type === 'incoming' && tradeData.trade_status !== 'complete' &&
+          <button id='request-button' onClick={handleEditRequest}>Edit Request</button>}
       </div>
 
       <div className='items-card' id='offered-cards'>
@@ -175,10 +216,11 @@ const Trading = () => {
         </div>
       </div>
       <div className='trading-footer-buttons'>
-        <button id='trading-delete' onClick={handleDeleteTrade}>Delete Trade</button>
-        {type === 'incoming' && <button id='trading-confirm'
+        {tradeData.trade_status !== 'complete' && <button id='trading-delete' onClick={handleDeleteTrade}>Delete Trade</button>}
+        {type === 'incoming' && tradeData.trade_status !== 'complete' && <button id='trading-confirm'
           onClick={handleConfirmTrade}>{isTradeChanged() ?
             (initialOffer ? 'Send Offer' : 'Update Trade') : 'Complete Trade'}</button>}
+        {tradeData.trade_status === 'complete' && <button id='trading-delete' onClick={handleRevokeTrade}>Revoke Trade</button>}
       </div>
     </div>
   )

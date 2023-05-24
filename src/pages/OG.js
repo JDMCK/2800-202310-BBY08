@@ -13,7 +13,7 @@ const OG = () => {
   }
 
   const changeToDefaultColours = () => {
-    document.documentElement.style.setProperty('--primary', '#a6ffe1');
+    document.documentElement.style.setProperty('--primary', '#62bc83');
     document.documentElement.style.setProperty('--secondary', 'rgb(48, 95, 75)');
     document.documentElement.style.setProperty('--filter', 'none');
     document.documentElement.style.setProperty('--nav-text', 'black');

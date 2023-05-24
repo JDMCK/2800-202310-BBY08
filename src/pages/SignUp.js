@@ -1,17 +1,17 @@
 import { auth, firestore } from '../config/firebase.js';
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { setDoc, doc } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
-import { logo } from "../img";
-import Navbar from "../components/Navbar";
+import { setDoc, doc } from 'firebase/firestore';
+import { Link, useNavigate } from 'react-router-dom';
+import { logo } from '../img';
+import Navbar from '../components/Navbar';
 
 function SignUp() {
     const navigate = useNavigate();
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const [registerFirstName, setFirstName] = useState("");
-    const [registerLastName, setLastName] = useState("");
+    const [registerEmail, setRegisterEmail] = useState('');
+    const [registerPassword, setRegisterPassword] = useState('');
+    const [registerFirstName, setFirstName] = useState('');
+    const [registerLastName, setLastName] = useState('');
     const [range, setRange] = useState('50km');
     const [error, setError] = useState('');
 
@@ -44,8 +44,8 @@ function SignUp() {
 
     return (
         <>
-            <Navbar 
-            title={<img src={logo} alt='BarterBetter' className='nav-logo'/>} />
+            <Navbar
+                title={<img src={logo} alt='BarterBetter' className='nav-logo' />} />
             <div className='user-form'>
                 <h1>Signup</h1>
                 <form onSubmit={event => event.preventDefault()}>

@@ -1,11 +1,11 @@
-import { useLocation } from "react-router-dom";
-import { Navbar } from "../components";
-import { addDoc, collection, limit, orderBy, query } from "firebase/firestore";
-import { firestore } from "../config/firebase";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import ChatMessage from "../components/ChatMessage";
-import MessageInput from "../components/MessageInput";
-import { useEffect } from "react";
+import { useLocation } from 'react-router-dom';
+import { Navbar } from '../components';
+import { addDoc, collection, limit, orderBy, query } from 'firebase/firestore';
+import { firestore } from '../config/firebase';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import ChatMessage from '../components/ChatMessage';
+import MessageInput from '../components/MessageInput';
+import { useEffect } from 'react';
 
 const Chat = () => {
 
@@ -37,7 +37,8 @@ const Chat = () => {
       <div className='chat-background'>
         <Navbar title={toName && toName} backArrow={true} />
         <div className='messages'>
-          {messages && messages.map((message, i) => <ChatMessage key={i} me={toName !== message.sender} message={message} />
+          {messages && messages.map((message, i) => <ChatMessage key={i}
+            me={toName !== message.sender} message={message} systemMessage={message.system_message} />
           )}
         </div>
         <MessageInput sendMessage={sendMessage} />

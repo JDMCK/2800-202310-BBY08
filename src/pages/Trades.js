@@ -1,8 +1,10 @@
 import { useState, } from 'react';
 import { collection, doc, query, where } from 'firebase/firestore';
-import { auth, firestore } from "../config/firebase";
-import { Footer, Navbar, Tab, TradeCard } from "../components";
+import { auth, firestore } from '../config/firebase';
+import { Footer, Navbar, Tab, TradeCard } from '../components';
 import { useCollectionDataOnce, useCollectionOnce, useDocumentDataOnce } from 'react-firebase-hooks/firestore';
+import { useNavigate } from 'react-router-dom';
+import { history } from '../img';
 
 const Trades = () => {
   // States for tabs
@@ -35,10 +37,16 @@ const Trades = () => {
     }
   };
 
+  const navigate = useNavigate();
 
   return (
     <>
-      <Navbar title="Trades" />
+      <Navbar title='Trades' navButtons={[
+        {
+          onclick: () => navigate('/archivedTrades'),
+          icon: history
+        }
+      ]} />
       <div className='trades-content'>
         <div className='trade-tabs'>
           <Tab id='incomingTab' onClick={() => displayIncoming()} selected={incomingSelected} tabName='Incoming Offers' />

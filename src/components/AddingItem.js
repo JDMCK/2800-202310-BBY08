@@ -92,8 +92,6 @@ const AddingItem = () => {
   useEffect(() => {
     var savedName = localStorage.getItem('name');
     var savedDescription = localStorage.getItem('description');
-    // var timeStamp = new Date();
-    // setTimeStamp(timeStamp.seconds);
     if (savedName !== null) {
       setName(savedName);
       document.getElementById('item-name-input').value = savedName;
@@ -105,10 +103,6 @@ const AddingItem = () => {
     setDisabled(true);
   }, []);
 
-  /**
-   * Runs every time fields are changed from empty to filled or vice-versa
-   * Enables the next button ONLY when all fields are filled out
-   */
   useEffect(() => {
     if (name !== '' && description !== '' && image !== '') {
       setDisabled(false);
@@ -119,32 +113,44 @@ const AddingItem = () => {
 
   return (
     <div className='add-item-container'>
-    <form className='form-input'>
-      <div className='clear-btn-container'>
-        <button id='clear-btn' type='button' onClick={clearForm}>Clear</button>
-      </div>
-      <div className='item-container'>
-        <label htmlFor='item-name-input'>Item Name</label>
-        <input type='text' id='item-name-input' className='item-input' name='itemName' placeholder='Enter item name here' onChange={checkItemName} />
-      </div>
-      <div className='item-container'>
-        <label htmlFor='item-description-input'>Item Description</label>
-        <textarea rows='3' id='item-description-input' className="item-input" name="itemDescription" placeholder="Enter item description here" onChange={checkItemDescription} />
-      </div>
-      <div className='image-preview-container'>
-        <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
-        <br />
-        <br />
-        <div className='preview'>
-          <img id='preview-selected-image' alt='Preview'></img>
+      <form className='form-input'>
+        <div className='clear-btn-container'>
+          <button id='clear-btn' type='button' onClick={clearForm}>Clear</button>
         </div>
-        <label htmlFor='file-upload'>Upload Image</label>
-        <input id='file-upload' type='file' accept='image/*' onChange={previewImage} />
-      </div>
-      <div className='next-btn-container'>
-        <button id='next-btn' disabled={disabled} type='button' onClick={() => { toPreview() }} >Next</button>
-      </div>
-    </form>
+        <div className='item-container'>
+          <label htmlFor='item-name-input'>Item Name</label>
+          <input type='text' id='item-name-input' className='item-input' name='itemName' placeholder='Enter item name here' onChange={checkItemName} />
+        </div>
+        <div className='item-container'>
+          <label htmlFor='item-description-input'>Item Description</label>
+          <textarea rows='3' id='item-description-input' className="item-input" name="itemDescription" placeholder="Enter item description here" onChange={checkItemDescription} />
+        </div>
+        <div className='image-preview-container'>
+          <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
+          <br />
+          <br />
+          <div className='preview'>
+            <img id='preview-selected-image' alt='Preview'></img>
+          </div>
+          <div className='item-container'>
+            <label htmlFor='item-description-input'>Item Description</label>
+            <textarea rows='3' id='item-description-input' className='item-input' name='itemDescription' placeholder='Enter item description here' onChange={checkItemDescription} />
+          </div>
+          <div className='image-preview-container'>
+            <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
+            <br />
+            <br />
+            <div className='preview'>
+              <img id='preview-selected-image' alt='Preview'></img>
+            </div>
+            <label htmlFor='file-upload'>Upload Image</label>
+            <input id='file-upload' type='file' accept='image/*' onChange={previewImage} />
+          </div>
+        </div>
+        <div className='next-btn-container'>
+          <button id='next-btn' disabled={disabled} type='button' onClick={() => { toPreview() }} >Next</button>
+        </div>
+      </form>
     </div>
   );
 };

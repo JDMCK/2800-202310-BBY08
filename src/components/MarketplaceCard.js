@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router";
-import { firestore } from "../config/firebase";
+import { useNavigate } from 'react-router';
+import { firestore } from '../config/firebase';
 import { getDoc, doc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 
@@ -23,14 +23,10 @@ const MarketplaceCard = ({ itemDoc }) => {
               setFirstName(userData.first_name);
               setLastName(userData.last_name);
               setPicURL(userData.profile_picture_URL);
-            } else {
-              console.log("User document does not have an email field");
             }
-          } else {
-            console.log("User document does not exist");
           }
         } catch (error) {
-          console.log("Error retrieving user document:", error);
+          console.log('Error retrieving user document:', error);
         }
       }
     };

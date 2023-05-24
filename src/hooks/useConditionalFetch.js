@@ -1,6 +1,6 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { firestore } from "../config/firebase";
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { firestore } from '../config/firebase';
 
 const useConditionalFetch = (path, type, firestorePath) => {
 
