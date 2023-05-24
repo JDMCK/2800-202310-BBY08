@@ -132,21 +132,9 @@ const AddingItem = () => {
           <div className='preview'>
             <img id='preview-selected-image' alt='Preview'></img>
           </div>
-          <div className='item-container'>
-            <label htmlFor='item-description-input'>Item Description</label>
-            <textarea rows='3' id='item-description-input' className='item-input' name='itemDescription' placeholder='Enter item description here' onChange={checkItemDescription} />
-          </div>
-          <div className='image-preview-container'>
-            <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
-            <br />
-            <br />
-            <div className='preview'>
-              <img id='preview-selected-image' alt='Preview'></img>
-            </div>
             <label htmlFor='file-upload'>Upload Image</label>
             <input id='file-upload' type='file' accept='image/*' onChange={previewImage} />
           </div>
-        </div>
         <div className='next-btn-container'>
           <button id='next-btn' disabled={disabled} type='button' onClick={() => { toPreview() }} >Next</button>
         </div>

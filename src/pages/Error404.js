@@ -15,7 +15,7 @@ const Error404 = () => {
         />
       <div id="errorContainer">
       <h3>Page not found...</h3>
-      <img src={gif404}></img>
+      <img src={gif404} alt='404'></img>
       <Link to={'/'}>Go Home</Link>
       </div>
       </div>

@@ -17,10 +17,6 @@ input:focus {
   outline: 2px solid var(--primary);
 }
 
-  outline: 2px solid var(--primary);
-
-}
-
 .clear-btn-container {
   display: flex;
   justify-content: right;

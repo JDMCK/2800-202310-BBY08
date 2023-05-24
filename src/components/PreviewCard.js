@@ -22,7 +22,8 @@ const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
         item_name: itemName,
         description: itemDesc,
         timeStamp: new Date(),
-        user_ref: userRef
+        user_ref: userRef,
+        isTraded: false
       });
       const storageRef = ref(storage, `item_pictures/${docRef.id}`);
       const snapshot = await uploadBytes(storageRef, file);
@@ -73,7 +74,7 @@ const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
         </div>
       </div>
       <button id='add-item-btn' disabled={disabledButton} className='add-item' type='button' onClick={uploadItem}>Add Item</button>
-      <Confirmation onConfirm={goHome} id='confirm-modal' />
+      <Confirmation onConfirm={goHome} id='confirm-modal' buttonMessage='Back to Home' title='Item has been successfully added!'/>
     </>
   );
 };

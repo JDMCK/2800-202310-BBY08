@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Footer, MarketplaceCard } from '../components';
 import { chatIcon, searchIcon, logo } from '../img';
 import { useEffect, useState } from 'react';
-import { collection, getDocs, query, where, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { firestore } from '../config/firebase';
 
 const Home = () => {
