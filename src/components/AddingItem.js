@@ -68,8 +68,17 @@ const AddingItem = () => {
     removeImageBtn.setAttribute('hidden', 'hidden');
     setImage('');
     localStorage.removeItem('image');
-    localStorage.removeItem('file');
   };
+
+  const clearForm = () => {
+    document.getElementById('item-name-input').value = '';
+    document.getElementById('item-description-input').value = '';
+    setName('');
+    localStorage.removeItem('name');
+    setDescription('');
+    localStorage.removeItem('description');
+    removeImage();
+  }
 
   // Go to Preview page passing along values for name, description and image
   const toPreview = () => {
@@ -77,7 +86,7 @@ const AddingItem = () => {
     localStorage.setItem('name', name);
     localStorage.setItem('description', description);
     navigate('/addItem/preview', { state: { itemName: name, itemDescription: description, imageSrc: image, file: file } });
-  }
+  };
 
   // Runs once the page is loaded, preloads information from local storage if not null
   useEffect(() => {
@@ -111,6 +120,9 @@ const AddingItem = () => {
   return (
     <div className='add-item-container'>
     <form className='form-input'>
+      <div className='clear-btn-container'>
+        <button id='clear-btn' type='button' onClick={clearForm}>Clear</button>
+      </div>
       <div className='item-container'>
         <label htmlFor='item-name-input'>Item Name</label>
         <input type='text' id='item-name-input' className='item-input' name='itemName' placeholder='Enter item name here' onChange={checkItemName} />

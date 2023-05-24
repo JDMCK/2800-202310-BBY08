@@ -1,7 +1,7 @@
 .form-input {
   margin: auto;
   max-width: 80%;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 0;
 }
 
@@ -9,16 +9,33 @@
   margin: auto;
   font-weight: bold;
 }
-textarea:focus{
+
+textarea:focus {
   outline: 2px solid var(--primary);
 }
-input:focus {
-  outline: 2px solid var(--primary); }
 
-/* input.visited {
-  background-color: red;
-  outline: 2px solid orange;  
-} */
+input:focus {
+  outline: 2px solid var(--primary); 
+}
+
+.clear-btn-container {
+  display: flex;
+  justify-content: right;
+}
+
+#clear-btn {
+  width: 20%;
+  height: 2rem;
+  color: #fff;
+  background-color: var(--secondary);
+  font-size: 15px;
+  border-radius: 1rem;
+  margin: auto;
+  margin-right: 0;
+  margin-bottom: 0.5rem;
+  border: none;
+}
+
 .item-container {
   margin-bottom: 1rem;
 }
@@ -26,7 +43,7 @@ input:focus {
 .item-input {
   width: 100%;
   border: 1px solid var(--light-grey);
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 #item-name-input {
