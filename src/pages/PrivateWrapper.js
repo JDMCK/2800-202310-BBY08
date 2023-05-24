@@ -1,7 +1,7 @@
-import { Navigate, Outlet } from "react-router"
-import { auth } from "../config/firebase";
+import { Navigate, Outlet } from 'react-router'
+import { auth } from '../config/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import Loading from "./Loading";
+import Loading from './Loading';
 
 const PrivateWrapper = () => {
 

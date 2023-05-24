@@ -1,8 +1,8 @@
-import { useCollectionOnce } from "react-firebase-hooks/firestore";
-import { Navbar } from "../components";
-import { collection, doc, or, query, where } from "firebase/firestore";
-import { auth, firestore } from "../config/firebase";
-import ConversationCard from "../components/ConversationCard";
+import { useCollectionOnce } from 'react-firebase-hooks/firestore';
+import { Navbar } from '../components';
+import { collection, doc, or, query, where } from 'firebase/firestore';
+import { auth, firestore } from '../config/firebase';
+import ConversationCard from '../components/ConversationCard';
 
 const Conversations = () => {
 

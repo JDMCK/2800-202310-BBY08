@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Navbar, Footer, MarketplaceCard } from "../components";
-import { chatIcon, searchIcon, logo } from "../img";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { firestore } from "../config/firebase";
+import { Link, useNavigate } from 'react-router-dom';
+import { Navbar, Footer, MarketplaceCard } from '../components';
+import { chatIcon, searchIcon, logo } from '../img';
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { firestore } from '../config/firebase';
 
 const Home = () => {
 
@@ -33,13 +33,13 @@ const Home = () => {
             {
               icon: searchIcon,
               onclick: () => {
-                navigate("/");
+                navigate('/');
               },
             },
             {
               icon: chatIcon,
               onclick: () => {
-                navigate("/conversations");
+                navigate('/conversations');
               },
             },
           ]}

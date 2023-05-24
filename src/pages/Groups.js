@@ -3,7 +3,7 @@ import { Footer, Navbar } from '../components';
 const Groups = () => {
   return (
     <>
-      <Navbar title="Groups" />
+      <Navbar title='Groups' />
       <Footer />
     </>
   );

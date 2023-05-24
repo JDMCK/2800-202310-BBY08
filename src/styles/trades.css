@@ -66,3 +66,8 @@
   background-color: white;
   margin: 0.75rem;
 }
+
+#trades {
+  background-color: var(--secondary);
+  padding-bottom: 1rem;
+}

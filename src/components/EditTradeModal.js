@@ -1,7 +1,7 @@
-import { collection, doc, getDocs, query, where } from "firebase/firestore";
-import { firestore } from "../config/firebase";
-import InventoryItem from "./InventoryItem";
-import { useEffect, useState } from "react";
+import { collection, doc, getDocs, query, where } from 'firebase/firestore';
+import { firestore } from '../config/firebase';
+import InventoryItem from './InventoryItem';
+import { useEffect, useState } from 'react';
 
 const EditTradeModal = ({ id, isSelectedByRef, userId, username, onEdit }) => {
 
@@ -32,7 +32,7 @@ const EditTradeModal = ({ id, isSelectedByRef, userId, username, onEdit }) => {
 
   return (
     <dialog id={id} className='inventory-modal'>
-      <h2>{username + "'s items"}</h2>
+      <h2>{username + '\'s items'}</h2>
       <div className='inventory-modal-items'>
         {(itemDocs && selectedItems) && itemDocs.map((itemDoc, i) =>
           <InventoryItem key={i} thumbnail={itemDoc.data().picture_URL} onClick={() => handleSelectItem(itemDocs[i])}

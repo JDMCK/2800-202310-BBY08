@@ -9,11 +9,14 @@
   margin: auto;
   font-weight: bold;
 }
-textarea:focus{
+
+textarea:focus {
   outline: 2px solid var(--primary);
 }
+
 input:focus {
-  outline: 2px solid var(--primary); }
+  outline: 2px solid var(--primary);
+}
 
 /* input.visited {
   background-color: red;
@@ -151,7 +154,7 @@ input:focus {
 
 
 /* Styling for Modal */
-#goHome {
+#go-home {
   border: none;
   height: 3rem;
   border-radius: 10px;
@@ -179,4 +182,3 @@ input:focus {
   margin: 1rem;
   border-radius: 10px;
 }
-

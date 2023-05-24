@@ -50,7 +50,6 @@ const Trading = () => {
     // eslint-disable-next-line
   }, []);
 
-  // Button handlers
   const handleEditOffer = () => {
     document.getElementById('offer-modal').showModal();
   };
@@ -119,7 +118,10 @@ const Trading = () => {
         await setDoc(tradeRef, newTrade);
       }
     } else {
-      await setDoc(tradeRef, { trade_status: 'complete' }, { merge: true })
+      await setDoc(tradeRef, { trade_status: 'complete' }, { merge: true });
+
+      const confirmedItems = receiverItems.concat(senderItems);
+      await confirmedItems.forEach(async item => await setDoc(item.ref, { isTraded: true }, { merge: true }));
     }
     navigate('/trades');
   }
@@ -164,9 +166,11 @@ const Trading = () => {
       </div>
 
       <div className='trading-middle'>
-        {type === 'incoming' && <button id='offer-button' onClick={handleEditOffer}>Edit Offer</button>}
+        {type === 'incoming' && tradeData.trade_status !== 'complete' &&
+          <button id='offer-button' onClick={handleEditOffer}>Edit Offer</button>}
         <img id='trading-arrows' src={tradesIcon} alt='' />
-        {type === 'incoming' && <button id='request-button' onClick={handleEditRequest}>Edit Request</button>}
+        {type === 'incoming' && tradeData.trade_status !== 'complete' &&
+          <button id='request-button' onClick={handleEditRequest}>Edit Request</button>}
       </div>
 
       <div className='items-card' id='offered-cards'>
@@ -177,7 +181,7 @@ const Trading = () => {
       </div>
       <div className='trading-footer-buttons'>
         <button id='trading-delete' onClick={handleDeleteTrade}>Delete Trade</button>
-        {type === 'incoming' && <button id='trading-confirm'
+        {type === 'incoming' && tradeData.trade_status !== 'complete' && <button id='trading-confirm'
           onClick={handleConfirmTrade}>{isTradeChanged() ?
             (initialOffer ? 'Send Offer' : 'Update Trade') : 'Complete Trade'}</button>}
       </div>

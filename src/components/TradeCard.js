@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
-import { firestore } from "../config/firebase";
+import { firestore } from '../config/firebase';
 import { collection, doc, getDoc, query, where } from 'firebase/firestore';
 import { tradesIcon, placeholderImage } from '../img';
 import InventoryItem from './InventoryItem';
@@ -38,7 +38,6 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
     theirNameID = tradeData.receiver_ref.id;
   }
 
-  // 
   useEffect(() => {
     const getTheirName = async () => {
       const docRef = doc(firestore, 'users', theirNameID);

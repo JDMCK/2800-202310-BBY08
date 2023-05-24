@@ -63,10 +63,10 @@ const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
 
   return (
     <>
-      <div className="preview-card">
+      <div className='preview-card'>
         <div className='marketplace-card'>
-          <img src={imgSrc} alt="Preview" />
-          <div className="card-text">
+          <img src={imgSrc} alt='Preview' />
+          <div className='card-text'>
             <h3>{itemName}</h3>
             <p>{itemDesc}</p>
           </div>
