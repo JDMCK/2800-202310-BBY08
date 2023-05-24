@@ -73,7 +73,7 @@ const PreviewCard = ({ itemName, itemDesc, imgSrc, file }) => {
         </div>
       </div>
       <button id='add-item-btn' disabled={disabledButton} className='add-item' type='button' onClick={uploadItem}>Add Item</button>
-      <Confirmation onConfirm={goHome} />
+      <Confirmation onConfirm={goHome} id='confirm-modal' />
     </>
   );
 };

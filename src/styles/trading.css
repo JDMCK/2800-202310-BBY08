@@ -61,6 +61,7 @@
 
 #request-button {
   background-color: var(--primary);
+  color: white;
 }
 
 #offer-button {

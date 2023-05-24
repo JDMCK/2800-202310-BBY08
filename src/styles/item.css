@@ -28,7 +28,7 @@
   max-width: 20rem;
   height: 3rem;
   border: none;
-  background-color: #F8333C;
+  background-color: var(--red);
   color: white;
   border-radius: 1rem;
 }
@@ -57,11 +57,10 @@
   margin: auto;
   align-items: center;
   flex-direction: column;
-  /* max-width: 600px; */
   background-color: var(--secondary);
-  height: 100dvh;
+  /* height: 100dvh; */
   margin: auto;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .item-buttons #initiate-trade-button {

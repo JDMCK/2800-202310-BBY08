@@ -13,7 +13,7 @@ const EditTradeModal = ({ id, isSelectedByRef, userId, username, onEdit }) => {
   useEffect(() => {
     const getItems = async () => {
       const itemColRef = collection(firestore, 'items');
-      const itemQuery = query(itemColRef, where('user_ref', '==', userRef));
+      const itemQuery = query(itemColRef, where('user_ref', '==', userRef), where('isTraded', '==', false));
       const itemDocs = await getDocs(itemQuery);
       setItemDocs(itemDocs.docs);
     }

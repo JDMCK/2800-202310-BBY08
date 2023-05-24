@@ -61,8 +61,10 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
 
 
   // Query the database for items that were selected
-  const [mySelectedItems] = useCollectionDataOnce(query(collection(firestore, 'items'), where('__name__', 'in', mySelected)));
-  const [theirSelectedItems] = useCollectionDataOnce(query(collection(firestore, 'items'), where('__name__', 'in', theirSelected)));
+  const [mySelectedItems] = useCollectionDataOnce(query(collection(firestore, 'items'),
+    where('__name__', 'in', mySelected.length === 0 ? ['id'] : mySelected)));
+  const [theirSelectedItems] = useCollectionDataOnce(query(collection(firestore, 'items'),
+    where('__name__', 'in', theirSelected.length === 0 ? ['id'] : theirSelected)));
 
   const goCurrentTrade = () => {
     navigate('/trading', { state: { tradeData: JSON.stringify(tradeData), type: type, tradeId: tradeID, theirName: theirName, myName: myName, initialOffer: false } });
@@ -72,8 +74,9 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
     <div className='trade-card' onClick={goCurrentTrade}>
       <h1>{theirName}</h1>
       <section className='selected-inventory'>
-        {theirSelectedItems && theirSelectedItems.map((item, i) =>
-          <InventoryItem key={i} onClick={undefined} thumbnail={item.picture_URL ? item.picture_URL : placeholderImage} />)
+        {theirSelectedItems && theirSelectedItems.filter(item => tradeData.trade_status === 'complete' || item.isTraded === false)
+          .map((item, i) =>
+            <InventoryItem key={i} onClick={undefined} thumbnail={item.picture_URL ? item.picture_URL : placeholderImage} />)
         }
       </section>
       <div className='trade-middle-container'>
@@ -82,8 +85,9 @@ const TradeCard = ({ tradeData, type, tradeID, myName }) => {
         <h2>Offered Items</h2>
       </div>
       <section className='selected-inventory'>
-        {mySelectedItems && mySelectedItems.map((item, i) =>
-          <InventoryItem key={i} onClick={undefined} thumbnail={item.picture_URL ? item.picture_URL : placeholderImage} />)
+        {mySelectedItems && mySelectedItems.filter(item => tradeData.trade_status === 'complete' || item.isTraded === false)
+          .map((item, i) =>
+            <InventoryItem key={i} onClick={undefined} thumbnail={item.picture_URL ? item.picture_URL : placeholderImage} />)
         }
       </section>
     </div>

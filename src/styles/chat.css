@@ -33,6 +33,17 @@
   justify-content: flex-end;
 }
 
+.chat-container.system-message {
+  justify-content: center;
+}
+
+.system-message .chat-message {
+  background-color: var(--secondary);
+  border-radius: 1rem;
+  text-align: center;
+  margin: 1rem;
+}
+
 .chat-container.recieved {
   justify-content: flex-start;
 }

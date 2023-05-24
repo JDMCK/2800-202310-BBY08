@@ -37,7 +37,8 @@ const Chat = () => {
       <div className='chat-background'>
         <Navbar title={toName && toName} backArrow={true} />
         <div className='messages'>
-          {messages && messages.map((message, i) => <ChatMessage key={i} me={toName !== message.sender} message={message} />
+          {messages && messages.map((message, i) => <ChatMessage key={i}
+            me={toName !== message.sender} message={message} systemMessage={message.system_message} />
           )}
         </div>
         <MessageInput sendMessage={sendMessage} />

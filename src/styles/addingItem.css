@@ -18,10 +18,6 @@ input:focus {
   outline: 2px solid var(--primary);
 }
 
-/* input.visited {
-  background-color: red;
-  outline: 2px solid orange;  
-} */
 .item-container {
   margin-bottom: 1rem;
 }
@@ -154,7 +150,7 @@ input:focus {
 
 
 /* Styling for Modal */
-#go-home {
+#confirm-button {
   border: none;
   height: 3rem;
   border-radius: 10px;
@@ -164,7 +160,7 @@ input:focus {
   font-size: medium;
 }
 
-#confirm-modal {
+.confirm-modal {
   text-align: center;
   position: absolute;
   top: 40%;

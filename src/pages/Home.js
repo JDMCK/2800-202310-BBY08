@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Footer, MarketplaceCard } from '../components';
 import { chatIcon, searchIcon, logo } from '../img';
 import { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from '../config/firebase';
 
 const Home = () => {
@@ -12,7 +12,8 @@ const Home = () => {
   useEffect(() => {
     const getItemDocs = async () => {
       const itemsColRef = collection(firestore, 'items');
-      const itemDocs = await getDocs(itemsColRef);
+      const itemsQuery = query(itemsColRef, where('isTraded', '==', false));
+      const itemDocs = await getDocs(itemsQuery);
       setItems(itemDocs);
     }
     getItemDocs();

@@ -14,10 +14,10 @@ const Profile = () => {
   const userDocRef = doc(firestore, `users/${auth.currentUser.uid}`);
   const [userDoc] = useDocumentDataOnce(userDocRef);
   const [itemRefs] = useCollectionOnce(
-    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef))
+    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef), where('isTraded', '==', false))
   );
   const [items] = useCollectionDataOnce(
-    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef))
+    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef), where('isTraded', '==', false))
   );
 
   // Button handlers
