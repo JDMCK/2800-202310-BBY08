@@ -37,13 +37,16 @@ const Trading = () => {
     const getItems = async (ids, setter, ref) => {
       if (ids.length === 0) {
         setter([]);
+        ref.current = [];
         return;
       };
       const itemRefs = ids.map(id => doc(firestore, 'items', id));
       const itemPromises = itemRefs.map(ref => getDoc(ref));
       const itemDocs = await Promise.all(itemPromises);
-      if (!initialOffer) ref.current = itemDocs;
-      setter(itemDocs.filter(itemDoc => tradeData.trade_status === 'complete' || itemDoc.data().isTraded === false));
+      const filteredItemDocs = itemDocs.filter(itemDoc => tradeData.trade_status === 'complete' || itemDoc.data().isTraded === false);
+      if (!initialOffer)
+        ref.current = filteredItemDocs;
+      setter(filteredItemDocs);
     }
     getItems(receiverSelectedIds, setReceiverItems, initialReceiverItems);
     getItems(senderSelectedIds, setSenderItems, initialSenderItems);
