@@ -1,16 +1,22 @@
 import { auth } from '../config/firebase.js';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { Navbar } from '../components';
+import { Confirmation, Navbar } from '../components';
 
 
 function ResetPassword() {
-
     const [email, setEmail] = useState('');
+
+    const navigate = useNavigate();
 
     const SendPasswordEmail = async () => {
         await sendPasswordResetEmail(auth, email);
-        alert('Email Has Been Sent')
+        document.getElementById('confirm-modal').showModal();
+    }
+
+    const backToLogin = () => {
+        navigate('/login');
     }
 
     return (
@@ -29,6 +35,7 @@ function ResetPassword() {
                     <button onClick={SendPasswordEmail}>Send</button>
                 </form>
             </div>
+            <Confirmation onConfirm={backToLogin} id='confirm-modal' buttonMessage='Back to Login' title='An email has been sent! Please follow the instructions on the email to reset your password.'></Confirmation>
         </>
     )
 
