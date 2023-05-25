@@ -35,7 +35,7 @@ const OG = () => {
           <button className='change-btn' id='default-btn' onClick={changeToDefaultColours}>Change to Default</button>
         </div>
         <div className='go-home-container'>
-          <button id='goHome' onClick={goHome}>
+          <button id='go-home' onClick={goHome}>
             <b>Back to Home</b>
           </button>
         </div>

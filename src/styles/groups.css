@@ -1,0 +1,14 @@
+#groups-container {
+    width: auto;
+    background-color: white;
+    margin: 0.75rem;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    max-width: 400px;
+    text-align: center;
+}
+
+#groups-container img{
+    width: 100%;
+    max-width: 400px;
+}

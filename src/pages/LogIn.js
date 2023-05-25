@@ -7,54 +7,54 @@ import { logo } from '../img';
 
 function LogIn() {
 
-    const navigate = useNavigate();
-    const [logInEmail, setLogInEmail] = useState('');
-    const [logInPassword, setLogInPassword] = useState('');
-    const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const [logInEmail, setLogInEmail] = useState('');
+  const [logInPassword, setLogInPassword] = useState('');
+  const [error, setError] = useState('');
 
 
-    const SignIn = async () => {
-        try {
-            await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
-            navigate('/');
-        } catch (e) {
-            setError('Incorrect email/password combination.');
-            console.error('Failed to login.', e)
-        }
-    };
+  const SignIn = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, logInEmail, logInPassword);
+      navigate('/');
+    } catch (e) {
+      setError('Incorrect email/password combination.');
+      console.error('Failed to login.', e)
+    }
+  };
 
-    return (
-        <>
-            <Navbar
-                title={<img src={logo} alt='BarterBetter' className='nav-logo' />} />
-            <div className='user-form'>
-                <h1>Log In</h1>
-                <form onSubmit={event => event.preventDefault()}>
-                    <input type='email' placeholder='email'
-                        onChange={(event) => {
-                            setLogInEmail(event.target.value);
-                        }}>
-                    </input>
-                    <input type='password' placeholder='password'
-                        onChange={(event) => {
-                            setLogInPassword(event.target.value);
-                        }}>
-                    </input>
-                    <br></br>
-                    <p className='login-error'><b>{error}</b></p>
-                    <button onClick={SignIn}>Log In</button>
-                </form>
-                <Link to='/resetPassword'>
-                    Forgot Password?
-                </Link>
-                <div className='link-signup'>
-                    <p>Don't have an account?</p>
-                    <Link to='/signup'>Signup</Link>
-                </div>
-            </div>
-        </>
+  return (
+    <>
+      <Navbar
+        title={<img src={logo} alt='BarterBetter' className='nav-logo' />} />
+      <div className='user-form'>
+        <h1>Log In</h1>
+        <form onSubmit={event => event.preventDefault()}>
+          <input type='email' placeholder='email'
+            onChange={(event) => {
+              setLogInEmail(event.target.value);
+            }}>
+          </input>
+          <input type='password' placeholder='password'
+            onChange={(event) => {
+              setLogInPassword(event.target.value);
+            }}>
+          </input>
+          <br></br>
+          <p className='login-error'><b>{error}</b></p>
+          <button onClick={SignIn}>Log In</button>
+        </form>
+        <Link to='/resetPassword'>
+          Forgot Password?
+        </Link>
+        <div className='link-signup'>
+          <p>Don't have an account?</p>
+          <Link to='/signup'>Signup</Link>
+        </div>
+      </div>
+    </>
 
-    )
+  )
 }
 
 

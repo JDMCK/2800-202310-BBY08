@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Footer, MarketplaceCard } from '../components';
-import { chatIcon, searchIcon, logo } from '../img';
+import { chatIcon, logo } from '../img';
 import { useEffect, useState } from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { firestore } from '../config/firebase';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const getItemDocs = async () => {
       const itemsColRef = collection(firestore, 'items');
-      const itemsQuery = query(itemsColRef, where('isTraded', '==', false));
+      const itemsQuery = query(itemsColRef, orderBy('timeStamp', 'desc'), where('isTraded', '==', false));
       const itemDocs = await getDocs(itemsQuery);
       setItems(itemDocs);
     }
@@ -32,17 +32,11 @@ const Home = () => {
           }
           navButtons={[
             {
-              icon: searchIcon,
-              onclick: () => {
-                navigate('/');
-              },
-            },
-            {
               icon: chatIcon,
               onclick: () => {
                 navigate('/conversations');
               },
-            },
+            }
           ]}
         />
         {items && items.docs.map((itemDoc, i) => (

@@ -95,8 +95,3 @@
   background-color: var(--secondary);
   color: white;
 }
-
-.background {
-  background-color: var(--secondary);
-  height: 100vh;
-}

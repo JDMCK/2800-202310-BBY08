@@ -4,6 +4,7 @@ import {
   Trades, AddItem, Item, Settings, Preview, PrivateWrapper, Conversations,
   OG, ArchivedTrades
 } from "./pages";
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
       <Route path='/signup' element={<SignUp />} />
       <Route path='/login' element={<LogIn />} />
       <Route path='/og' element={<OG />} />
+      <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
       <Route path='/*' element={<Error404 />} />
     </Routes>
   );

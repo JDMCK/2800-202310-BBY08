@@ -185,7 +185,7 @@ const Trading = () => {
   }
 
   return (
-    <div className='background'>
+    <>
       {senderItems && <EditTradeModal id='request-modal' isSelectedByRef={senderItems}
         userId={senderId} username={theirName} onEdit={setSenderItems} />}
       {receiverItems && <EditTradeModal id='offer-modal' isSelectedByRef={receiverItems}
@@ -220,13 +220,13 @@ const Trading = () => {
         </div>
       </div>
       <div className='trading-footer-buttons'>
-        {tradeData.trade_status !== 'complete' && <button id='trading-delete' onClick={handleDeleteTrade}>Delete Trade</button>}
+        {tradeData.trade_status !== 'complete' && !initialOffer && <button id='trading-delete' onClick={handleDeleteTrade}>Delete Trade</button>}
         {type === 'incoming' && tradeData.trade_status !== 'complete' && <button id='trading-confirm'
           onClick={handleConfirmTrade}>{isTradeChanged() ?
             (initialOffer ? 'Send Offer' : 'Update Trade') : 'Complete Trade'}</button>}
         {tradeData.trade_status === 'complete' && <button id='trading-delete' onClick={handleRevokeTrade}>Revoke Trade</button>}
       </div>
-    </div>
+    </>
   )
 };
 

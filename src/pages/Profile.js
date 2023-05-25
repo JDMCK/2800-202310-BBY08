@@ -1,7 +1,7 @@
 import { Navbar, Footer, InventoryItem } from '../components';
 import { useNavigate } from 'react-router-dom';
-import { useCollectionDataOnce, useCollectionOnce, useDocumentDataOnce } from 'react-firebase-hooks/firestore';
-import { collection, doc, query, where } from 'firebase/firestore';
+import { useCollectionData, useCollection, useDocumentData } from 'react-firebase-hooks/firestore';
+import { collection, doc, query, where, orderBy } from 'firebase/firestore';
 import { auth, firestore } from '../config/firebase';
 import { placeholderImage } from '../img';
 import { edit } from '../img';
@@ -12,12 +12,12 @@ const Profile = () => {
 
   // Get user and item data from firestore
   const userDocRef = doc(firestore, `users/${auth.currentUser.uid}`);
-  const [userDoc] = useDocumentDataOnce(userDocRef);
-  const [itemRefs] = useCollectionOnce(
-    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef), where('isTraded', '==', false))
+  const [userDoc] = useDocumentData(userDocRef);
+  const [itemRefs] = useCollection(
+    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef), where('isTraded', '==', false), orderBy('timeStamp', 'desc'),)
   );
-  const [items] = useCollectionDataOnce(
-    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef), where('isTraded', '==', false))
+  const [items] = useCollectionData(
+    query(collection(firestore, 'items'), where('user_ref', '==', userDocRef), where('isTraded', '==', false), orderBy('timeStamp', 'desc'))
   );
 
   // Button handlers
