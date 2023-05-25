@@ -181,7 +181,7 @@ const Trading = () => {
   }
 
   return (
-    <div className='background'>
+    <>
       {senderItems && <EditTradeModal id='request-modal' isSelectedByRef={senderItems}
         userId={senderId} username={theirName} onEdit={setSenderItems} />}
       {receiverItems && <EditTradeModal id='offer-modal' isSelectedByRef={receiverItems}
@@ -222,7 +222,7 @@ const Trading = () => {
             (initialOffer ? 'Send Offer' : 'Update Trade') : 'Complete Trade'}</button>}
         {tradeData.trade_status === 'complete' && <button id='trading-delete' onClick={handleRevokeTrade}>Revoke Trade</button>}
       </div>
-    </div>
+    </>
   )
 };
 
