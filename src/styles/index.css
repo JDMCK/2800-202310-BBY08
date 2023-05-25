@@ -29,3 +29,16 @@ body {
   scrollbar-width: none !important;
   /* Firefox */
 }
+
+#privacy-policy {
+  margin: 1rem;
+}
+
+.privacy-container {
+  margin: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  background-color: white;
+  height: 80%;
+  overflow: scroll;
+}
