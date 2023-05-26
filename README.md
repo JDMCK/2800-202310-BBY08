@@ -48,15 +48,9 @@ Barter Better is easy to use. Simply create an account, log in, and start tradin
 - Private messaging between users to negotiate trades and plan meet-ups.
 - Notification system for new messages and trade offers.
 
-## Known Bugs and Limitations:
-
--
--
-
 ## Features for Future Implementation:
 
 - Search functionality with filters by category and location.
-- Ability to view previous trade histories.
 - Rating system to leave feedback about the trading experience.
 - Community listings, ability to trade with a specific group of people pertaining to common interests.
 
