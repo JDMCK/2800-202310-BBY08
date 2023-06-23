@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 const AddingItem = () => {
   // Boolean state for next button
@@ -10,6 +11,7 @@ const AddingItem = () => {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [file, setFile] = useState('');
+  const [category, setCategory] = useState(null);
 
   const navigate = useNavigate();
 
@@ -78,6 +80,8 @@ const AddingItem = () => {
     setDescription('');
     localStorage.removeItem('description');
     removeImage();
+    setCategory(null);
+    document.getElementById('item-category').value = null;
   }
 
   // Go to Preview page passing along values for name, description and image
@@ -88,10 +92,39 @@ const AddingItem = () => {
     navigate('/addItem/preview', { state: { itemName: name, itemDescription: description, imageSrc: image, file: file } });
   };
 
+  // Constant for all different tags
+  const categories = [
+    { value: 'Antiques & Vintage', label: 'Antiques & Vintage' },
+    { value: 'Appliances & Kitchenware', label: 'Appliances & Kitchenware' },
+    { value: 'Art & Collectibles', label: 'Art & Collectibles' },
+    { value: 'Baby & Kids', label: 'Baby & Kids' },
+    { value: 'Beauty & Personal Care', label: 'Beauty & Personal Care' },
+    { value: 'Clothing & Accessories', label: 'Clothing & Accessories' },
+    { value: 'Electronics & Gadgets', label: 'Electronics & Gadgets' },
+    { value: 'Food', label: 'Food' },
+    { value: 'Health & Wellness', label: 'Health & Wellness' },
+    { value: 'Home & Furniture', label: 'Home & Furniture' },
+    { value: 'Jewelry & Watches', label: 'Jewelry & Watches' },
+    { value: 'Movies & Entertainment', label: 'Movies & Entertainment' },
+    { value: 'Music & Instruments', label: 'Music & Instruments' },
+    { value: 'Miscellaneous', label: 'Miscellaneous' },
+    { value: 'Office & School Supplies', label: 'Office & School Supplies' },
+    { value: 'Outdoor & Camping', label: 'Outdoor & Camping' },
+    { value: 'Pet Supplies', label: 'Pet Supplies' },
+    { value: 'Sports & Fitness', label: 'Sports & Fitness' },
+    { value: 'Toys & Games', label: 'Toys & Games' }
+  ];
+
+  const handleSelectChange = selectedCategory => {
+    setCategory(selectedCategory);
+  }
+
   // Runs once the page is loaded, preloads information from local storage if not null
   useEffect(() => {
     var savedName = localStorage.getItem('name');
     var savedDescription = localStorage.getItem('description');
+    var savedCategory = localStorage.getItem('category');
+
     if (savedName !== null) {
       setName(savedName);
       document.getElementById('item-name-input').value = savedName;
@@ -100,16 +133,28 @@ const AddingItem = () => {
       setDescription(savedDescription);
       document.getElementById('item-description-input').value = savedDescription;
     }
+    if (savedCategory) {
+      setCategory(JSON.parse(savedCategory));
+    }
+
     setDisabled(true);
   }, []);
 
   useEffect(() => {
-    if (name !== '' && description !== '' && image !== '') {
+    if (category) {
+      localStorage.setItem('category', JSON.stringify(category));
+    } else {
+      localStorage.removeItem('category');
+    }
+  }, [category]);
+
+  useEffect(() => {
+    if (name !== '' && description !== '' && image !== '' && category !== null) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [name, description, image]);
+  }, [name, description, image, category]);
 
   return (
     <div className='add-item-container'>
@@ -125,6 +170,10 @@ const AddingItem = () => {
           <label htmlFor='item-description-input'>Item Description</label>
           <textarea rows='3' id='item-description-input' className="item-input" name="itemDescription" placeholder="Enter item description here" onChange={checkItemDescription} />
         </div>
+        <div className='item-container'>
+          <label htmlFor='categories'>Category</label>
+          <Select id='item-category' value={category} isSearchable={true} isClearable={true} onChange={handleSelectChange} options={categories}></Select>
+        </div>
         <div className='image-preview-container'>
           <button type='button' id='remove-img' hidden='hidden' onClick={removeImage}>X</button>
           <br />
@@ -132,9 +181,9 @@ const AddingItem = () => {
           <div className='preview'>
             <img id='preview-selected-image' alt='Preview'></img>
           </div>
-            <label htmlFor='file-upload'>Upload Image</label>
-            <input id='file-upload' type='file' accept='image/*' onChange={previewImage} />
-          </div>
+          <label htmlFor='file-upload'>Upload Image</label>
+          <input id='file-upload' type='file' accept='image/*' onChange={previewImage} />
+        </div>
         <div className='next-btn-container'>
           <button id='next-btn' disabled={disabled} type='button' onClick={() => { toPreview() }} >Next</button>
         </div>
