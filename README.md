@@ -8,6 +8,12 @@
 
 Barter Better is a cashless trading system that enables users to exchange goods and services without the need for cash transactions. We believe that "one person's trash is another person's treasure," and Barter Better aims to bring this philosophy to life by helping reduce the growing waste problem in our world. The system is built with React and offers an intuitive interface that simplifies and streamlines the trading process.
 
+Item Screen | Trade Screen
+:-:|:-:
+![item](https://github.com/user-attachments/assets/334f3d7b-8465-428a-b18c-8fe355af65f4) | ![trade](https://github.com/user-attachments/assets/0e3f67a5-723e-4174-babc-6491ff363b80)
+
+
+
 ## Installation:
 
 To install Barter Better, follow these steps:
